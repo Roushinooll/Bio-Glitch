@@ -1,0 +1,15 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Builds / exports
+/builds/
+/export/
+*.exe
+*.apk
+*.aab
+*.zip
+
+# Temporary files
+*.tmp
+*.bak

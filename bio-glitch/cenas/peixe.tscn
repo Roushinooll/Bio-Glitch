@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c7ypr6rlghv4d"]
+
+[ext_resource type="Script" uid="uid://dchxp1ip76iu0" path="res://cenas/peixe.gd" id="1_evbt0"]
+[ext_resource type="Texture2D" uid="uid://dbj0uogct26a0" path="res://sprites/peixe.png" id="1_tq34s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evbt0"]
+size = Vector2(53, 32)
+
+[node name="Peixe" type="CharacterBody2D" unique_id=1974186269]
+script = ExtResource("1_evbt0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1071486478]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_evbt0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1606886515]
+texture = ExtResource("1_tq34s")
