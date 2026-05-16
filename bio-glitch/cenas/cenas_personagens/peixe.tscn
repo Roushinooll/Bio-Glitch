@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c7ypr6rlghv4d"]
 
-[ext_resource type="Script" uid="uid://dchxp1ip76iu0" path="res://cenas/peixe.gd" id="1_evbt0"]
-[ext_resource type="Texture2D" uid="uid://dbj0uogct26a0" path="res://sprites/peixe.png" id="1_tq34s"]
+[ext_resource type="Script" uid="uid://dchxp1ip76iu0" path="res://cenas/cenas_personagens/peixe.gd" id="1_evbt0"]
+[ext_resource type="Texture2D" uid="uid://dbj0uogct26a0" path="res://sprites/sprite_personagens/peixe.png" id="1_tq34s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evbt0"]
 size = Vector2(53, 32)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b22v8ei8pbsxj"
-path="res://.godot/imported/player.png-f534b8a02ffb80eefc72936296201445.ctex"
+uid="uid://dbj0uogct26a0"
+path="res://.godot/imported/peixe.png-0223455fe2c56ab8390e4a367e25e746.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player.png"
-dest_files=["res://.godot/imported/player.png-f534b8a02ffb80eefc72936296201445.ctex"]
+source_file="res://sprites/sprite_personagens/peixe.png"
+dest_files=["res://.godot/imported/peixe.png-0223455fe2c56ab8390e4a367e25e746.ctex"]
 
 [params]
 

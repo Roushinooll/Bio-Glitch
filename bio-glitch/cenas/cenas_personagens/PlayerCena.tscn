@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ul07hsl78q7u"]
 
-[ext_resource type="PackedScene" uid="uid://buw3t0tk2djs4" path="res://cenas/player.tscn" id="1_vurku"]
-[ext_resource type="PackedScene" uid="uid://c7ypr6rlghv4d" path="res://cenas/peixe.tscn" id="2_x3vny"]
+[ext_resource type="PackedScene" uid="uid://buw3t0tk2djs4" path="res://cenas/cenas_personagens/player.tscn" id="1_vurku"]
+[ext_resource type="PackedScene" uid="uid://c7ypr6rlghv4d" path="res://cenas/cenas_personagens/peixe.tscn" id="2_x3vny"]
 
 [node name="PlayerCena" type="Node2D" unique_id=1837931663]
 

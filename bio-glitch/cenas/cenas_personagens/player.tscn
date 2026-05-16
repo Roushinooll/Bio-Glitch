@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://buw3t0tk2djs4"]
 
-[ext_resource type="Texture2D" uid="uid://b22v8ei8pbsxj" path="res://sprites/player.png" id="1_8or6t"]
-[ext_resource type="Script" uid="uid://bri4hj2ao5b6c" path="res://cenas/player.gd" id="1_unwft"]
+[ext_resource type="Texture2D" uid="uid://b22v8ei8pbsxj" path="res://sprites/sprite_personagens/player.png" id="1_8or6t"]
+[ext_resource type="Script" uid="uid://bri4hj2ao5b6c" path="res://cenas/cenas_personagens/player.gd" id="1_unwft"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unwft"]
 size = Vector2(101, 326)

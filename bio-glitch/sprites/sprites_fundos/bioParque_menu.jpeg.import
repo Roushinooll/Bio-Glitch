@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbj0uogct26a0"
-path="res://.godot/imported/peixe.png-6df26dc34888c4fddaabe02417821000.ctex"
+uid="uid://dva2aumw1f45l"
+path="res://.godot/imported/bioParque_menu.jpeg-a6a010b35c5a290e96ecfd1f9ca22aaa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/peixe.png"
-dest_files=["res://.godot/imported/peixe.png-6df26dc34888c4fddaabe02417821000.ctex"]
+source_file="res://sprites/sprites_fundos/bioParque_menu.jpeg"
+dest_files=["res://.godot/imported/bioParque_menu.jpeg-a6a010b35c5a290e96ecfd1f9ca22aaa.ctex"]
 
 [params]
 
