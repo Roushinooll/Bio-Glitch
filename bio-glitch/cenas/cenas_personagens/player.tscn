@@ -17,3 +17,6 @@ shape = SubResource("RectangleShape2D_unwft")
 texture = ExtResource("1_8or6t")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1137968963]
+limit_right = 3456
+limit_bottom = 648
+position_smoothing_enabled = true

@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://c2dtwo3gb7urj"]
+
+[ext_resource type="Script" uid="uid://bvx40enb47b6h" path="res://cenas/levels/level_01_primeiro_andar.gd" id="1_kcivy"]
+[ext_resource type="PackedScene" uid="uid://ul07hsl78q7u" path="res://cenas/cenas_personagens/PlayerPeixe.tscn" id="1_nx3kh"]
+[ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="3_sl3pc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nx3kh"]
+size = Vector2(23, 649)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcivy"]
+size = Vector2(3503, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sl3pc"]
+size = Vector2(3456, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oi15t"]
+size = Vector2(120, 257)
+
+[node name="Level01PrimeiroAndar" type="Node2D" unique_id=1396872602]
+script = ExtResource("1_kcivy")
+
+[node name="Background" type="Node2D" parent="." unique_id=1695479381]
+
+[node name="Fundo" type="ColorRect" parent="Background" unique_id=184066320]
+z_index = -20
+offset_right = 3456.0
+offset_bottom = 648.0
+color = Color(0.043137256, 0.06666667, 0.09411765, 1)
+
+[node name="Chao" type="ColorRect" parent="Background" unique_id=1784268953]
+z_index = -10
+offset_top = 391.0
+offset_right = 3456.0
+offset_bottom = 648.0
+color = Color(0.14901961, 0.19607843, 0.21960784, 1)
+
+[node name="World" type="Node2D" parent="." unique_id=1003222039]
+
+[node name="MapLimits" type="Node2D" parent="World" unique_id=430441400]
+
+[node name="ParedeEsquerda" type="StaticBody2D" parent="World/MapLimits" unique_id=8544878]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/MapLimits/ParedeEsquerda" unique_id=1592029815]
+position = Vector2(-11, 324)
+shape = SubResource("RectangleShape2D_nx3kh")
+
+[node name="ParedeDireita" type="StaticBody2D" parent="World/MapLimits" unique_id=856988109]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/MapLimits/ParedeDireita" unique_id=1212294524]
+position = Vector2(3468, 324.5)
+shape = SubResource("RectangleShape2D_nx3kh")
+
+[node name="ParedeCima" type="StaticBody2D" parent="World/MapLimits" unique_id=2038025695]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/MapLimits/ParedeCima" unique_id=275750890]
+position = Vector2(1728.5, -10)
+shape = SubResource("RectangleShape2D_kcivy")
+
+[node name="ParedeBaixo" type="StaticBody2D" parent="World/MapLimits" unique_id=1597029636]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/MapLimits/ParedeBaixo" unique_id=1287470772]
+position = Vector2(1729, 658)
+shape = SubResource("RectangleShape2D_kcivy")
+
+[node name="ParedeSuperiorDoChao" type="StaticBody2D" parent="World/MapLimits" unique_id=446253523]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/MapLimits/ParedeSuperiorDoChao" unique_id=600072936]
+position = Vector2(1729, 82.5)
+shape = SubResource("RectangleShape2D_sl3pc")
+
+[node name="Players" type="Node2D" parent="." unique_id=630295948]
+
+[node name="PlayerCena" parent="Players" unique_id=1837931663 instance=ExtResource("1_nx3kh")]
+
+[node name="Interactables" type="Node2D" parent="." unique_id=1983216289]
+
+[node name="TriggerPrimeiroObjetivoa2D" type="Area2D" parent="Interactables" unique_id=1166163034]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/TriggerPrimeiroObjetivoa2D" unique_id=234802269]
+position = Vector2(1000, 519.5)
+shape = SubResource("RectangleShape2D_oi15t")
+
+[node name="Dialogues" type="Node2D" parent="." unique_id=1071693924]
+
+[node name="Transitions" type="Node2D" parent="." unique_id=342301149]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=836740143]
+
+[node name="ObjectiveLabel" type="Label" parent="UI" unique_id=1178042511]
+visible = false
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 620.0
+offset_bottom = 60.0
+theme_override_fonts/font = ExtResource("3_sl3pc")
+theme_override_font_sizes/font_size = 10
+text = "Objetivo: Explore o futuro do ecossistema."
+
+[connection signal="body_entered" from="Interactables/TriggerPrimeiroObjetivoa2D" to="." method="_on_trigger_primeiro_objetivoa_2d_body_entered"]
