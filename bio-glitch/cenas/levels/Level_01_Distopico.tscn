@@ -1,9 +1,8 @@
-[gd_scene format=3 uid="uid://c2dtwo3gb7urj"]
+[gd_scene format=3 uid="uid://daxm8kaxrki73"]
 
-[ext_resource type="Script" uid="uid://bvx40enb47b6h" path="res://cenas/levels/level_01_primeiro_andar.gd" id="1_kcivy"]
-[ext_resource type="PackedScene" uid="uid://ul07hsl78q7u" path="res://cenas/cenas_personagens/PlayerPeixe.tscn" id="1_nx3kh"]
-[ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="3_sl3pc"]
-[ext_resource type="Script" uid="uid://bp3u5pdvspibg" path="res://cenas/levels/glitch_ui.gd" id="4_oi15t"]
+[ext_resource type="Script" uid="uid://dj7y5xcm2klrb" path="res://cenas/levels/level_01_distopico.gd" id="1_a74es"]
+[ext_resource type="PackedScene" uid="uid://ul07hsl78q7u" path="res://cenas/cenas_personagens/PlayerPeixe.tscn" id="2_hbbop"]
+[ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="3_2p82t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx3kh"]
 size = Vector2(23, 649)
@@ -14,11 +13,8 @@ size = Vector2(3503, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sl3pc"]
 size = Vector2(3456, 23)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k00wm"]
-size = Vector2(26.5, 257)
-
-[node name="Level01PrimeiroAndar" type="Node2D" unique_id=1396872602]
-script = ExtResource("1_kcivy")
+[node name="Level01Distopico" type="Node2D" unique_id=1396872602]
+script = ExtResource("1_a74es")
 
 [node name="Background" type="Node2D" parent="." unique_id=1695479381]
 
@@ -26,14 +22,14 @@ script = ExtResource("1_kcivy")
 z_index = -20
 offset_right = 3456.0
 offset_bottom = 648.0
-color = Color(0.043137256, 0.06666667, 0.09411765, 1)
+color = Color(0.16470589, 0.05882353, 0.05882353, 1)
 
 [node name="Chao" type="ColorRect" parent="Background" unique_id=1784268953]
 z_index = -10
 offset_top = 391.0
 offset_right = 3456.0
 offset_bottom = 648.0
-color = Color(0.14901961, 0.19607843, 0.21960784, 1)
+color = Color(0.2901961, 0.16470589, 0.101960786, 1)
 
 [node name="World" type="Node2D" parent="." unique_id=1003222039]
 
@@ -76,16 +72,9 @@ shape = SubResource("RectangleShape2D_sl3pc")
 
 [node name="Players" type="Node2D" parent="." unique_id=630295948]
 
-[node name="PlayerCena" parent="Players" unique_id=1837931663 instance=ExtResource("1_nx3kh")]
+[node name="PlayerCena" parent="Players" unique_id=1837931663 instance=ExtResource("2_hbbop")]
 
 [node name="Interactables" type="Node2D" parent="." unique_id=1983216289]
-
-[node name="GlitchTrigger" type="Area2D" parent="Interactables" unique_id=1351846950]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/GlitchTrigger" unique_id=2046684481]
-visible = false
-position = Vector2(1514.75, 519.5)
-shape = SubResource("RectangleShape2D_k00wm")
 
 [node name="Dialogues" type="Node2D" parent="." unique_id=1071693924]
 
@@ -98,55 +87,14 @@ offset_left = 20.0
 offset_top = 20.0
 offset_right = 620.0
 offset_bottom = 60.0
-theme_override_fonts/font = ExtResource("3_sl3pc")
+theme_override_fonts/font = ExtResource("3_2p82t")
 theme_override_font_sizes/font_size = 10
-text = "Objetivo: Explore o futuro do ecossistema."
+text = "Alguma coisa"
 
-[node name="GlitchUI" type="CanvasLayer" parent="UI" unique_id=327818770]
-script = ExtResource("4_oi15t")
-
-[node name="RedFlash" type="ColorRect" parent="UI/GlitchUI" unique_id=123637865]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0, 0, 1)
-
-[node name="GlitchBars" type="Control" parent="UI/GlitchUI" unique_id=2071204312]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ErrorSymbols" type="Control" parent="UI/GlitchUI" unique_id=1633359941]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DarkPulse" type="ColorRect" parent="UI/GlitchUI" unique_id=1909784650]
-visible = false
+[node name="FadeBlack" type="ColorRect" parent="UI" unique_id=844371445]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
-
-[node name="FadeBlack" type="ColorRect" parent="UI" unique_id=646214823]
-visible = false
-modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[connection signal="body_entered" from="Interactables/GlitchTrigger" to="." method="_on_glitch_trigger_body_entered"]

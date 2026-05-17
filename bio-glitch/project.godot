@@ -20,11 +20,23 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
-directories/dch_directory={}
-directories/dtl_directory={
-"level1_intro": "res://dialogs/timelines/level1_intro.dtl"
+directories/dch_directory={
+"Axolote": "res://dialogs/characters/Axolote.dch",
+"Player": "res://dialogs/characters/Player.dch",
+"SERVA": "res://dialogs/characters/SERVA.dch"
 }
-layout/style_directory={}
+directories/dtl_directory={
+"dialogoInicial_PlayerPeixe": "res://dialogs/timelines/dialogoInicial_PlayerPeixe.dtl",
+"level1_intro": "res://dialogs/timelines/level1_intro.dtl",
+"serva_alerta_glitch": "res://dialogs/timelines/serva_alerta_glitch.dtl"
+}
+layout/style_directory={
+"": "res://dialogs/styles/Default_style.tres",
+"Default_style": "res://dialogs/styles/Default_style.tres"
+}
+layout/style_list=["res://dialogs/styles/Default_style.tres"]
+layout/default_style="res://dialogs/styles/Default_style.tres"
+glossary/default_case_sensitive=true
 
 [editor_plugins]
 
