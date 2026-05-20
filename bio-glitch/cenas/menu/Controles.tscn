@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://bgdg5ofgfo7oe"]
+
+[ext_resource type="Script" uid="uid://cg7ailuwl44s7" path="res://cenas/menu/controles.gd" id="1_suf8e"]
+[ext_resource type="Texture2D" uid="uid://dva2aumw1f45l" path="res://sprites/sprites_fundos/bioParque_menu.jpeg" id="2_kqac0"]
+[ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="3_ul7vc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_un6ry"]
+bg_color = Color(0.06666667, 0.09411765, 0.10980392, 0.8)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.28235295, 0.8784314, 0.9019608, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4t1m"]
+bg_color = Color(0.02745098, 0.0627451, 0.07450981, 0.93333334)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.7058824, 0.05882353, 0.09411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6qa7h"]
+bg_color = Color(0.08235294, 0.16470589, 0.1882353, 0.8666667)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.47843137, 1, 1, 1)
+
+[node name="Controles" type="Control" unique_id=482544415]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_suf8e")
+
+[node name="TextureRect_Background" type="TextureRect" parent="." unique_id=1007624390]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kqac0")
+stretch_mode = 6
+metadata/_edit_lock_ = true
+
+[node name="ColorRect_Escurecimento" type="ColorRect" parent="." unique_id=1296966571]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.2509804)
+metadata/_edit_lock_ = true
+
+[node name="Button_Voltar" type="Button" parent="." unique_id=1335446120]
+custom_minimum_size = Vector2(310, 62)
+layout_mode = 0
+offset_left = 21.0
+offset_top = 14.0
+offset_right = 331.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+theme_override_colors/font_hover_color = Color(0.6156863, 0.9843137, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_ul7vc")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_un6ry")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l4t1m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6qa7h")
+text = "Voltar"
+
+[node name="Label_Titulo" type="Label" parent="." unique_id=287040870]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -833.0
+offset_top = 111.0
+offset_right = 319.0
+offset_bottom = 211.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.60784316, 0.05882353, 0.08627451, 1)
+theme_override_colors/font_shadow_color = Color(0.011764706, 0.0627451, 0.078431375, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_ul7vc")
+theme_override_font_sizes/font_size = 20
+text = "WASD - andar (Player 1)
+
+← ↑ ↓ → - andar (Player 2)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button_Voltar" to="." method="_on_button_voltar_pressed"]

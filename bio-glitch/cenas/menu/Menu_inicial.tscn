@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cqf3dtdcdhard"]
 
-[ext_resource type="Texture2D" uid="uid://dva2aumw1f45l" path="res://sprites/sprites_fundos/bioParque_menu.jpeg" id="1_5y2fb"]
-[ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="2_omb8n"]
+[ext_resource type="Script" uid="uid://dwefuqd6smnb" path="res://cenas/menu/menu_inicial.gd" id="1_3tbs1"]
+[ext_resource type="Texture2D" uid="uid://dva2aumw1f45l" path="res://sprites/sprites_fundos/bioParque_menu.jpeg" id="2_6yxkp"]
+[ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="3_4u16u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omb8n"]
 bg_color = Color(0.06666667, 0.09411765, 0.10980392, 0.8)
@@ -39,6 +40,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3tbs1")
 
 [node name="TextureRect_Background" type="TextureRect" parent="." unique_id=632421515]
 layout_mode = 1
@@ -47,8 +49,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_5y2fb")
+texture = ExtResource("2_6yxkp")
 stretch_mode = 6
+metadata/_edit_lock_ = true
 
 [node name="ColorRect_Escurecimento" type="ColorRect" parent="." unique_id=1588656538]
 layout_mode = 1
@@ -58,6 +61,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.2509804)
+metadata/_edit_lock_ = true
 
 [node name="Label_Titulo" type="Label" parent="." unique_id=296402085]
 layout_mode = 1
@@ -72,7 +76,7 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(0.60784316, 0.05882353, 0.08627451, 1)
 theme_override_colors/font_shadow_color = Color(0.011764706, 0.0627451, 0.078431375, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_omb8n")
+theme_override_fonts/font = ExtResource("3_4u16u")
 theme_override_font_sizes/font_size = 50
 text = "Bio Glitch"
 horizontal_alignment = 1
@@ -99,7 +103,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
 theme_override_colors/font_hover_color = Color(0.6156863, 0.9843137, 1, 1)
 theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("2_omb8n")
+theme_override_fonts/font = ExtResource("3_4u16u")
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_omb8n")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_i6auh")
@@ -112,7 +116,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
 theme_override_colors/font_hover_color = Color(0.6156863, 0.9843137, 1, 1)
 theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("2_omb8n")
+theme_override_fonts/font = ExtResource("3_4u16u")
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_omb8n")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_i6auh")
@@ -126,7 +130,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
 theme_override_colors/font_hover_color = Color(0.6156863, 0.9843137, 1, 1)
 theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("2_omb8n")
+theme_override_fonts/font = ExtResource("3_4u16u")
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_omb8n")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_i6auh")
@@ -140,9 +144,13 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
 theme_override_colors/font_hover_color = Color(0.6156863, 0.9843137, 1, 1)
 theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("2_omb8n")
+theme_override_fonts/font = ExtResource("3_4u16u")
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_omb8n")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_i6auh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cf1la")
 text = "Sair"
+
+[connection signal="pressed" from="VBoxContainer_Botoes/Button_Jogar" to="." method="_on_button_jogar_pressed"]
+[connection signal="pressed" from="VBoxContainer_Botoes/Button_Controles" to="." method="_on_button_controles_pressed"]
+[connection signal="pressed" from="VBoxContainer_Botoes/Button_Sair" to="." method="_on_button_sair_pressed"]
