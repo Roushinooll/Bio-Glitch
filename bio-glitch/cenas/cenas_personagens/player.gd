@@ -3,6 +3,10 @@ extends CharacterBody2D
 var speed: float = 200.0
 var can_move := true
 
+func _ready() -> void:
+	add_to_group("player_principal")
+	print("Player entrou no grupo")
+
 func _physics_process(delta: float) -> void:
 	if not can_move:
 		velocity = Vector2.ZERO

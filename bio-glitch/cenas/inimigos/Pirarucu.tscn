@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cc2uq7idnpemu"]
+
+[ext_resource type="Script" uid="uid://crosj73m3gpp5" path="res://cenas/inimigos/pirarucu.gd" id="1_go08c"]
+[ext_resource type="Texture2D" uid="uid://vc3hgowtd1ih" path="res://sprites/sprites_inimigos/pirarucu.png" id="1_tjfhq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_go08c"]
+size = Vector2(189, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwhjc"]
+size = Vector2(39, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rxks"]
+size = Vector2(22, 70)
+
+[node name="Pirarucu" type="CharacterBody2D" unique_id=575496690]
+script = ExtResource("1_go08c")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1447599922]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_tjfhq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=346214987]
+visible = false
+shape = SubResource("RectangleShape2D_go08c")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=582371512]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=386431448]
+position = Vector2(-300, 0)
+shape = SubResource("RectangleShape2D_wwhjc")
+
+[node name="WarningArea" type="Area2D" parent="." unique_id=1131666735]
+position = Vector2(-400, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningArea" unique_id=23853822]
+position = Vector2(-41, 0)
+shape = SubResource("RectangleShape2D_1rxks")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_entered" from="WarningArea" to="." method="_on_warning_area_body_entered"]

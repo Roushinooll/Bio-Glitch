@@ -17,7 +17,7 @@ size = Vector2(3456, 23)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k00wm"]
 size = Vector2(26.5, 257)
 
-[node name="Level01PrimeiroAndar" type="Node2D" unique_id=1396872602]
+[node name="Level01Futurista" type="Node2D" unique_id=1396872602]
 script = ExtResource("1_kcivy")
 
 [node name="Background" type="Node2D" parent="." unique_id=1695479381]
@@ -25,7 +25,7 @@ script = ExtResource("1_kcivy")
 [node name="Fundo" type="ColorRect" parent="Background" unique_id=184066320]
 z_index = -20
 offset_right = 3456.0
-offset_bottom = 648.0
+offset_bottom = 391.0
 color = Color(0.043137256, 0.06666667, 0.09411765, 1)
 
 [node name="Chao" type="ColorRect" parent="Background" unique_id=1784268953]

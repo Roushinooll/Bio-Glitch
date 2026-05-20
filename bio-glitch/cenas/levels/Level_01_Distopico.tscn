@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dj7y5xcm2klrb" path="res://cenas/levels/level_01_distopico.gd" id="1_a74es"]
 [ext_resource type="PackedScene" uid="uid://ul07hsl78q7u" path="res://cenas/cenas_personagens/PlayerPeixe.tscn" id="2_hbbop"]
 [ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="3_2p82t"]
+[ext_resource type="PackedScene" uid="uid://cc2uq7idnpemu" path="res://cenas/inimigos/Pirarucu.tscn" id="3_2t2wh"]
+[ext_resource type="Script" uid="uid://ccmpenbhgabuo" path="res://cenas/levels/pirarucu_warning_label.gd" id="5_hbbop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx3kh"]
 size = Vector2(23, 649)
@@ -73,8 +75,19 @@ shape = SubResource("RectangleShape2D_sl3pc")
 [node name="Players" type="Node2D" parent="." unique_id=630295948]
 
 [node name="PlayerCena" parent="Players" unique_id=1837931663 instance=ExtResource("2_hbbop")]
+position = Vector2(-365, 83)
+
+[node name="Player" parent="Players/PlayerCena" index="0" unique_id=662344364]
+position = Vector2(943, 264)
+
+[node name="Peixe" parent="Players/PlayerCena" index="1" unique_id=1974186269]
+position = Vector2(743, 181)
 
 [node name="Interactables" type="Node2D" parent="." unique_id=1983216289]
+
+[node name="Pirarucu" parent="Interactables" unique_id=575496690 instance=ExtResource("3_2t2wh")]
+position = Vector2(1618, 296)
+normal_speed = 100.0
 
 [node name="Dialogues" type="Node2D" parent="." unique_id=1071693924]
 
@@ -92,9 +105,23 @@ theme_override_font_sizes/font_size = 10
 text = "Alguma coisa"
 
 [node name="FadeBlack" type="ColorRect" parent="UI" unique_id=844371445]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="PirarucuWarningLabel" type="Label" parent="UI" unique_id=174176659 groups=["pirarucu_warning_ui"]]
+visible = false
+offset_left = 1036.0
+offset_top = 20.0
+offset_right = 1136.0
+offset_bottom = 43.0
+theme_override_fonts/font = ExtResource("3_2p82t")
+theme_override_font_sizes/font_size = 10
+text = "CUIDADO!!!"
+script = ExtResource("5_hbbop")
+
+[editable path="Players/PlayerCena"]
