@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b12ecgwnkt76p"]
+
+[ext_resource type="Script" uid="uid://btan3wiffu44b" path="res://cenas/inimigos/cardume_dourados.gd" id="1_autn7"]
+[ext_resource type="PackedScene" uid="uid://lxp581scgsyi" path="res://cenas/inimigos/Dourado.tscn" id="2_v20rw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8cgk"]
+size = Vector2(700, 500)
+
+[node name="CardumeDourados" type="Node2D" unique_id=414718617]
+script = ExtResource("1_autn7")
+dourado_scene = ExtResource("2_v20rw")
+fish_amount = 7
+fish_speed = 210.0
+vertical_chase_strength = 0.45
+horizontal_spacing = 65.0
+random_offset = 25.0
+target_offset_range_x = 35.0
+wave_strength_max = 30.0
+time_between_spawns = 0.14
+
+[node name="ActivationArea" type="Area2D" parent="." unique_id=168383297]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationArea" unique_id=1896153000]
+shape = SubResource("RectangleShape2D_y8cgk")
+
+[node name="SpawnOrigin" type="Marker2D" parent="." unique_id=1315427442]
+position = Vector2(500, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=8276828]

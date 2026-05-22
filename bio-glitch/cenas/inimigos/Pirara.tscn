@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://c0xo2x0pnch27"]
+
+[ext_resource type="Texture2D" uid="uid://byjgahjdmayue" path="res://sprites/sprites_inimigos/Pirara.png" id="1_g5r6c"]
+[ext_resource type="Script" uid="uid://porjjycnfnm" path="res://cenas/inimigos/pirara.gd" id="1_n5pv5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5pv5"]
+size = Vector2(59, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_52g8r"]
+radius = 350.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8a0qn"]
+radius = 300.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52g8r"]
+
+[node name="Pirara" type="CharacterBody2D" unique_id=1268779069]
+collision_layer = 3
+collision_mask = 7
+script = ExtResource("1_n5pv5")
+speed = 100.0
+retreat_distance = 300.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=711576528]
+texture = ExtResource("1_g5r6c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=926864964]
+visible = false
+position = Vector2(0.5, -3)
+shape = SubResource("RectangleShape2D_n5pv5")
+
+[node name="WarningArea" type="Area2D" parent="." unique_id=271630592]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningArea" unique_id=948170013]
+shape = SubResource("CircleShape2D_52g8r")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=292428463]
+visible = false
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=511502936]
+shape = SubResource("CircleShape2D_8a0qn")
+
+[node name="BiteCooldown" type="Timer" parent="." unique_id=1039401169]
+
+[node name="BiteHitBox" type="Area2D" parent="." unique_id=2106439139]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BiteHitBox" unique_id=383450281]
+position = Vector2(-28, 0)
+shape = SubResource("RectangleShape2D_52g8r")

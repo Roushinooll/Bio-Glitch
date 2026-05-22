@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnr1atvhaty6e"
-path="res://.godot/imported/Pirarucu.png-902924615b59a1048ee22db9fa0edff0.ctex"
+uid="uid://o7tx7duod3i3"
+path="res://.godot/imported/Dourado.png-4ec98695fbb6d384adf0e20077fd3bec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/sprites_inimigos/Pirarucu.png"
-dest_files=["res://.godot/imported/Pirarucu.png-902924615b59a1048ee22db9fa0edff0.ctex"]
+source_file="res://sprites/sprites_inimigos/Dourado.png"
+dest_files=["res://.godot/imported/Dourado.png-4ec98695fbb6d384adf0e20077fd3bec.ctex"]
 
 [params]
 

@@ -1,41 +1,55 @@
 [gd_scene format=3 uid="uid://cc2uq7idnpemu"]
 
 [ext_resource type="Script" uid="uid://crosj73m3gpp5" path="res://cenas/inimigos/pirarucu.gd" id="1_go08c"]
-[ext_resource type="Texture2D" uid="uid://vc3hgowtd1ih" path="res://sprites/sprites_inimigos/pirarucu.png" id="1_tjfhq"]
+[ext_resource type="Texture2D" uid="uid://cnr1atvhaty6e" path="res://sprites/sprites_inimigos/Pirarucu.png" id="1_tjfhq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go08c"]
-size = Vector2(189, 64)
+size = Vector2(118, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwhjc"]
-size = Vector2(39, 73)
+size = Vector2(39, 218)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rxks"]
-size = Vector2(22, 70)
+size = Vector2(39, 218)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kx6s"]
+size = Vector2(40, 217.9375)
 
 [node name="Pirarucu" type="CharacterBody2D" unique_id=575496690]
 script = ExtResource("1_go08c")
+dash_speed = 1000.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1447599922]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(2, 2)
 texture = ExtResource("1_tjfhq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=346214987]
 visible = false
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_go08c")
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=582371512]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=386431448]
-position = Vector2(-300, 0)
+position = Vector2(-279, -1)
 shape = SubResource("RectangleShape2D_wwhjc")
 
 [node name="WarningArea" type="Area2D" parent="." unique_id=1131666735]
-position = Vector2(-400, 0)
+visible = false
+position = Vector2(-419, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WarningArea" unique_id=23853822]
-position = Vector2(-41, 0)
 shape = SubResource("RectangleShape2D_1rxks")
+
+[node name="StartArea" type="Area2D" parent="." unique_id=53936369]
+visible = false
+position = Vector2(-650, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartArea" unique_id=1530131926]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_5kx6s")
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_entered" from="WarningArea" to="." method="_on_warning_area_body_entered"]
+[connection signal="body_entered" from="StartArea" to="." method="_on_start_area_body_entered"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnr1atvhaty6e"
-path="res://.godot/imported/Pirarucu.png-902924615b59a1048ee22db9fa0edff0.ctex"
+uid="uid://buf763jotiwu4"
+path="res://.godot/imported/barraCheia.png-68c4a23ca1dc9573d9a64e0fd02c4295.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/sprites_inimigos/Pirarucu.png"
-dest_files=["res://.godot/imported/Pirarucu.png-902924615b59a1048ee22db9fa0edff0.ctex"]
+source_file="res://sprites/ui/barraCheia.png"
+dest_files=["res://.godot/imported/barraCheia.png-68c4a23ca1dc9573d9a64e0fd02c4295.ctex"]
 
 [params]
 

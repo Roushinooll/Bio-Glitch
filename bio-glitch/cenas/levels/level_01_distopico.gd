@@ -5,13 +5,16 @@ extends Node2D
 
 
 func _ready() -> void:
-	
 	block_players()
 	
 	await get_tree().create_timer(0.2).timeout
 	await fade_from_black(1.0)
 	
+	Dialogic.start("serva_alerta_posGlitch")
+	await Dialogic.timeline_ended
+	
 	unblock_players()
+
 
 func fade_from_black(duration: float = 1.0) -> void:
 	fade_black.visible = true
@@ -24,12 +27,14 @@ func fade_from_black(duration: float = 1.0) -> void:
 	
 	fade_black.visible = false
 
+
 func block_players() -> void:
 	for child in players.get_children():
 		if child.has_method("set_can_move"):
 			child.set_can_move(false)
 		else:
 			block_recursive(child)
+
 
 func unblock_players() -> void:
 	for child in players.get_children():
@@ -38,12 +43,14 @@ func unblock_players() -> void:
 		else:
 			unblock_recursive(child)
 
+
 func block_recursive(node: Node) -> void:
 	if "can_move" in node:
 		node.can_move = false
 	
 	for child in node.get_children():
 		block_recursive(child)
+
 
 func unblock_recursive(node: Node) -> void:
 	if "can_move" in node:

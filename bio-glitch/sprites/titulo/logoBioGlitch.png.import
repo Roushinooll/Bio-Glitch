@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnr1atvhaty6e"
-path="res://.godot/imported/Pirarucu.png-902924615b59a1048ee22db9fa0edff0.ctex"
+uid="uid://vctw6w6j6sj"
+path="res://.godot/imported/logoBioGlitch.png-92c671d46d2a3924a65c35f796e93fce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/sprites_inimigos/Pirarucu.png"
-dest_files=["res://.godot/imported/Pirarucu.png-902924615b59a1048ee22db9fa0edff0.ctex"]
+source_file="res://sprites/titulo/logoBioGlitch.png"
+dest_files=["res://.godot/imported/logoBioGlitch.png-92c671d46d2a3924a65c35f796e93fce.ctex"]
 
 [params]
 

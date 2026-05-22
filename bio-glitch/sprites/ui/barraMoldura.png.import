@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnr1atvhaty6e"
-path="res://.godot/imported/Pirarucu.png-902924615b59a1048ee22db9fa0edff0.ctex"
+uid="uid://b3upcfb1ptmy0"
+path="res://.godot/imported/barraMoldura.png-816182d605b22c66ad55ec493bf8b2f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/sprites_inimigos/Pirarucu.png"
-dest_files=["res://.godot/imported/Pirarucu.png-902924615b59a1048ee22db9fa0edff0.ctex"]
+source_file="res://sprites/ui/barraMoldura.png"
+dest_files=["res://.godot/imported/barraMoldura.png-816182d605b22c66ad55ec493bf8b2f8.ctex"]
 
 [params]
 

@@ -9,17 +9,27 @@ extends CanvasLayer
 
 var glitch_started := false
 
+@export var glitch_font: FontFile
+@export var glitch_font_min_size: int = 14
+@export var glitch_font_max_size: int = 28
+
 var error_texts := [
-	"ERROR",
-	"SYSTEM FAILURE",
-	"RA_SIGNAL_LOST",
-	"BIOPARK_CORE_ERROR",
-	"404",
-	"GLITCH",
-	"WARNING",
-	"S.E.R.V.A. OFFLINE",
-	"DATA CORRUPTED",
-	"REALITY SYNC FAILED"
+	"S.E.R.V.A. ACTIVE",
+	"THREAT DETECTED",
+	"HUMAN PRESENCE CONFIRMED",
+	"BIOPARK LOCKDOWN",
+	"FAUNA PROTECTION PROTOCOL",
+	"REALITY CORRUPTED",
+	"ACCESS DENIED",
+	"SYSTEM OVERRIDE",
+	"ENVIRONMENT COLLAPSE",
+	"DISTORTION LEVEL CRITICAL",
+	"RA_SIGNAL_DEAD",
+	"YOU SHOULD NOT BE HERE",
+	"PROTOCOL: PUNISHMENT",
+	"CORE INSTABILITY",
+	"BIOTECH FUSION STARTED",
+	"NO ESCAPE"
 ]
 
 
@@ -65,12 +75,14 @@ func _red_flash_effect() -> void:
 	
 	var tween := create_tween()
 	
-	tween.tween_property(red_flash, "modulate:a", 0.65, 0.15)
-	tween.tween_property(red_flash, "modulate:a", 0.30, 0.25)
-	tween.tween_property(red_flash, "modulate:a", 0.75, 0.15)
-	tween.tween_property(red_flash, "modulate:a", 0.15, 0.30)
-	tween.tween_property(red_flash, "modulate:a", 0.55, 0.20)
-	tween.tween_property(red_flash, "modulate:a", 0.0, 0.45)
+	tween.tween_property(red_flash, "modulate:a", 0.85, 0.08)
+	tween.tween_property(red_flash, "modulate:a", 0.10, 0.08)
+	tween.tween_property(red_flash, "modulate:a", 0.95, 0.06)
+	tween.tween_property(red_flash, "modulate:a", 0.25, 0.12)
+	tween.tween_property(red_flash, "modulate:a", 0.75, 0.08)
+	tween.tween_property(red_flash, "modulate:a", 0.05, 0.10)
+	tween.tween_property(red_flash, "modulate:a", 0.90, 0.05)
+	tween.tween_property(red_flash, "modulate:a", 0.0, 0.35)
 	
 	await tween.finished
 
@@ -101,16 +113,18 @@ func _create_random_glitch_bar() -> void:
 		randf_range(0.0, viewport_size.y)
 	)
 	
-	var random_color := randi_range(0, 3)
-	
+	var random_color := randi_range(0, 4)
+
 	if random_color == 0:
-		bar.color = Color(1.0, 0.0, 0.0, randf_range(0.35, 0.75))
+		bar.color = Color(0.75, 0.0, 0.0, randf_range(0.55, 0.95))
 	elif random_color == 1:
-		bar.color = Color(0.0, 1.0, 1.0, randf_range(0.25, 0.60))
+		bar.color = Color(0.15, 0.0, 0.0, randf_range(0.45, 0.85))
 	elif random_color == 2:
-		bar.color = Color(1.0, 1.0, 1.0, randf_range(0.15, 0.40))
+		bar.color = Color(0.0, 0.0, 0.0, randf_range(0.50, 0.90))
+	elif random_color == 3:
+		bar.color = Color(0.45, 0.02, 0.02, randf_range(0.50, 0.85))
 	else:
-		bar.color = Color(0.0, 0.0, 0.0, randf_range(0.30, 0.65))
+		bar.color = Color(0.9, 0.9, 0.9, randf_range(0.08, 0.20))
 	
 	var tween := create_tween()
 	tween.tween_property(bar, "position:x", bar.position.x + randf_range(-80.0, 180.0), randf_range(0.08, 0.20))
@@ -141,18 +155,32 @@ func _create_error_symbol() -> void:
 	
 	label.text = error_texts.pick_random()
 	label.position = Vector2(
-		randf_range(20.0, viewport_size.x - 220.0),
+		randf_range(20.0, viewport_size.x - 260.0),
 		randf_range(20.0, viewport_size.y - 60.0)
 	)
 	
-	label.modulate = Color(1.0, 0.05, 0.05, randf_range(0.65, 1.0))
-	label.rotation_degrees = randf_range(-4.0, 4.0)
+	var text_color_type := randi_range(0, 2)
+
+	if text_color_type == 0:
+		label.modulate = Color(0.9, 0.0, 0.0, randf_range(0.75, 1.0))
+	elif text_color_type == 1:
+		label.modulate = Color(0.35, 0.0, 0.0, randf_range(0.70, 1.0))
+	else:
+		label.modulate = Color(0.05, 0.0, 0.0, randf_range(0.80, 1.0))
+
+	label.rotation_degrees = randf_range(-8.0, 8.0)
 	
-	label.add_theme_font_size_override("font_size", randi_range(14, 28))
+	if glitch_font != null:
+		label.add_theme_font_override("font", glitch_font)
+
+	label.add_theme_font_size_override(
+		"font_size",
+		randi_range(glitch_font_min_size, glitch_font_max_size)
+	)
 	
 	var tween := create_tween()
-	tween.tween_property(label, "position:x", label.position.x + randf_range(-30.0, 30.0), 0.10)
-	tween.tween_property(label, "modulate:a", 0.0, randf_range(0.30, 0.60))
+	tween.tween_property(label, "position:x", label.position.x + randf_range(-80.0, 80.0), 0.06)
+	tween.tween_property(label, "modulate:a", 0.0, randf_range(0.20, 0.45))
 	
 	await tween.finished
 	
@@ -165,13 +193,13 @@ func _start_dark_pulse_loop() -> void:
 	
 	while time < glitch_duration:
 		dark_pulse.visible = true
-		dark_pulse.modulate.a = randf_range(0.10, 0.25)
+		dark_pulse.modulate.a = randf_range(0.35, 0.65)
 		
-		await get_tree().create_timer(randf_range(0.05, 0.10)).timeout
+		await get_tree().create_timer(randf_range(0.08, 0.18)).timeout
 		
 		dark_pulse.modulate.a = 0.0
 		
-		var delay := randf_range(0.10, 0.25)
+		var delay := randf_range(0.05, 0.18)
 		await get_tree().create_timer(delay).timeout
 		
 		time += delay

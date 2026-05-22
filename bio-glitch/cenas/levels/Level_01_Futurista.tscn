@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c2dtwo3gb7urj"]
 
 [ext_resource type="Script" uid="uid://bvx40enb47b6h" path="res://cenas/levels/level_01_primeiro_andar.gd" id="1_kcivy"]
-[ext_resource type="PackedScene" uid="uid://ul07hsl78q7u" path="res://cenas/cenas_personagens/PlayerPeixe.tscn" id="1_nx3kh"]
+[ext_resource type="PackedScene" uid="uid://buw3t0tk2djs4" path="res://cenas/cenas_personagens/player.tscn" id="2_cvgb6"]
 [ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="3_sl3pc"]
 [ext_resource type="Script" uid="uid://bp3u5pdvspibg" path="res://cenas/levels/glitch_ui.gd" id="4_oi15t"]
 
@@ -16,6 +16,9 @@ size = Vector2(3456, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k00wm"]
 size = Vector2(26.5, 257)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvgb6"]
+size = Vector2(20, 257)
 
 [node name="Level01Futurista" type="Node2D" unique_id=1396872602]
 script = ExtResource("1_kcivy")
@@ -76,24 +79,30 @@ shape = SubResource("RectangleShape2D_sl3pc")
 
 [node name="Players" type="Node2D" parent="." unique_id=630295948]
 
-[node name="PlayerCena" parent="Players" unique_id=1837931663 instance=ExtResource("1_nx3kh")]
+[node name="Player" parent="Players" unique_id=662344364 instance=ExtResource("2_cvgb6")]
+position = Vector2(620, 391)
 
 [node name="Interactables" type="Node2D" parent="." unique_id=1983216289]
 
 [node name="GlitchTrigger" type="Area2D" parent="Interactables" unique_id=1351846950]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/GlitchTrigger" unique_id=2046684481]
-visible = false
-position = Vector2(1514.75, 519.5)
+position = Vector2(2171, 519.5)
 shape = SubResource("RectangleShape2D_k00wm")
 
-[node name="Dialogues" type="Node2D" parent="." unique_id=1071693924]
+[node name="DialogueArea" type="Area2D" parent="Interactables" unique_id=881884979]
+position = Vector2(1551, 520)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/DialogueArea" unique_id=1363625715]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_cvgb6")
 
 [node name="Transitions" type="Node2D" parent="." unique_id=342301149]
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=836740143]
 
 [node name="ObjectiveLabel" type="Label" parent="UI" unique_id=1178042511]
+visible = false
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 620.0
@@ -104,6 +113,7 @@ text = "Objetivo: Explore o futuro do ecossistema."
 
 [node name="GlitchUI" type="CanvasLayer" parent="UI" unique_id=327818770]
 script = ExtResource("4_oi15t")
+glitch_font = ExtResource("3_sl3pc")
 
 [node name="RedFlash" type="ColorRect" parent="UI/GlitchUI" unique_id=123637865]
 visible = false
@@ -150,3 +160,4 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [connection signal="body_entered" from="Interactables/GlitchTrigger" to="." method="_on_glitch_trigger_body_entered"]
+[connection signal="body_entered" from="Interactables/DialogueArea" to="." method="_on_dialogue_area_body_entered"]

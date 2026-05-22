@@ -28,7 +28,9 @@ script = ExtResource("2_nkcdb")
 scene = ExtResource("5_uoei6")
 overrides = {
 "custom_normal_font": "\"res://fonts/PressStart2P-Regular.ttf\"",
-"name_label_custom_size": "13.0",
+"name_label_color_mode": "2",
+"name_label_custom_color": "Color(0, 1, 1, 1)",
+"name_label_custom_size": "16.0",
 "name_label_customfont": "\"res://fonts/PressStart2P-Regular.ttf\"",
 "name_label_use_global_font": "false",
 "name_label_use_global_size": "false",

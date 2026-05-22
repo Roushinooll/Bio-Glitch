@@ -7,12 +7,15 @@ extends Node2D
 
 var glitch_activated := false
 
+var dialogo_ativado := false
+
 
 func _ready() -> void:
 	
 	block_players()
 	Dialogic.start("level1_intro")
 	await Dialogic.timeline_ended
+	objective_label.visible = true
 	unblock_players()
 	
 func start_glitch_event() -> void:
@@ -22,14 +25,10 @@ func start_glitch_event() -> void:
 	glitch_activated = true
 	
 	block_players()
+	objective_label.visible = false
 	
 	shake_camera(glitch_ui.glitch_duration, 5.0)
 	await glitch_ui.start_glitch()
-	
-	objective_label.visible = false
-	
-	Dialogic.start("serva_alerta_glitch")
-	await Dialogic.timeline_ended
 	
 	await fade_to_black(1.0)
 	await get_tree().create_timer(1.0).timeout
@@ -112,3 +111,20 @@ func fade_from_black(duration: float = 1.0) -> void:
 	await tween.finished
 	
 	fade_black.visible = false
+
+
+func _on_dialogue_area_body_entered(body: Node2D) -> void:
+	if dialogo_ativado:
+		return
+	
+	if body.name != "Player":
+		return
+	
+	dialogo_ativado = true
+	
+	block_players()
+	
+	Dialogic.start("dialogoInicial_PlayerPeixe")
+	await Dialogic.timeline_ended
+	
+	unblock_players()

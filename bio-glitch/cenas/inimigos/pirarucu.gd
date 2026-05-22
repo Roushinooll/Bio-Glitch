@@ -12,6 +12,8 @@ extends CharacterBody2D
 
 var player: Node2D = null
 
+var is_active: bool = false
+
 var state: String = "normal"
 var prepare_timer: float = 0.0
 var dash_timer: float = 0.0
@@ -29,6 +31,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if player == null:
 		find_player()
+
+	if not is_active:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		keep_y_locked()
+		return
 
 	if cooldown_timer > 0:
 		cooldown_timer -= delta
@@ -67,10 +75,6 @@ func _physics_process(delta: float) -> void:
 func find_player() -> void:
 	player = get_tree().get_first_node_in_group("player_principal")
 
-	if player != null:
-		print("Pirarucu encontrou o player: ", player.name)
-
-
 func normal_swim() -> void:
 	velocity = swim_direction.normalized() * normal_speed
 	velocity.y = 0
@@ -83,14 +87,11 @@ func start_prepare_dash() -> void:
 	prepare_timer = prepare_time
 	player_inside_attack_area = false
 	velocity = Vector2.ZERO
-	print("Pirarucu preparando dash")
 
 
 func start_dash() -> void:
 	state = "dashing"
 	dash_timer = dash_duration
-	print("Pirarucu deu dash")
-
 
 func keep_y_locked() -> void:
 	if lock_y_position:
@@ -112,3 +113,8 @@ func show_warning_ui() -> void:
 func _on_warning_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player_principal"):
 		show_warning_ui()
+
+
+func _on_start_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player_principal"):
+		is_active = true

@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bq0t7n406eh47"]
+
+[ext_resource type="Script" uid="uid://cvrasqksse22l" path="res://cenas/ui/hud.gd" id="1_n8fld"]
+[ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="2_bvap5"]
+[ext_resource type="Texture2D" uid="uid://dp4p4juwss5n1" path="res://sprites/ui/barraVazia.png" id="2_jdeb1"]
+[ext_resource type="Texture2D" uid="uid://b3upcfb1ptmy0" path="res://sprites/ui/barraMoldura.png" id="3_r7n1o"]
+[ext_resource type="Texture2D" uid="uid://buf763jotiwu4" path="res://sprites/ui/barraCheia.png" id="4_yy4o2"]
+
+[node name="Hud" type="CanvasLayer" unique_id=2105037107]
+script = ExtResource("1_n8fld")
+
+[node name="LifeContainer" type="Control" parent="." unique_id=632887829]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="LifeContainer" unique_id=1082815458]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -151.0
+offset_top = 8.0
+offset_right = 149.0
+offset_bottom = 62.0
+grow_horizontal = 2
+
+[node name="LifeBox" type="VBoxContainer" parent="LifeContainer/CenterContainer" unique_id=162632934]
+layout_mode = 2
+theme_override_constants/separation = -7
+
+[node name="LifeBar" type="TextureProgressBar" parent="LifeContainer/CenterContainer/LifeBox" unique_id=1631280185]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_jdeb1")
+texture_over = ExtResource("3_r7n1o")
+texture_progress = ExtResource("4_yy4o2")
+
+[node name="LifeText" type="Label" parent="LifeContainer/CenterContainer/LifeBox" unique_id=589875025]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bvap5")
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1

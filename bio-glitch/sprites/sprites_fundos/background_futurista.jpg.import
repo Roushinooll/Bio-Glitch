@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnr1atvhaty6e"
-path="res://.godot/imported/Pirarucu.png-902924615b59a1048ee22db9fa0edff0.ctex"
+uid="uid://dnm7rcabebjos"
+path="res://.godot/imported/background_futurista.jpg-23a069cf0f22470266fa533652c9136d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/sprites_inimigos/Pirarucu.png"
-dest_files=["res://.godot/imported/Pirarucu.png-902924615b59a1048ee22db9fa0edff0.ctex"]
+source_file="res://sprites/sprites_fundos/background_futurista.jpg"
+dest_files=["res://.godot/imported/background_futurista.jpg-23a069cf0f22470266fa533652c9136d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnr1atvhaty6e"
-path="res://.godot/imported/Pirarucu.png-902924615b59a1048ee22db9fa0edff0.ctex"
+uid="uid://eid3vl1a6vsg"
+path="res://.godot/imported/spritesheet.png-9ca1b895415e069de6173702bad6cbcb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/sprites_inimigos/Pirarucu.png"
-dest_files=["res://.godot/imported/Pirarucu.png-902924615b59a1048ee22db9fa0edff0.ctex"]
+source_file="res://sprites/spritesheet_explosao/spritesheet.png"
+dest_files=["res://.godot/imported/spritesheet.png-9ca1b895415e069de6173702bad6cbcb.ctex"]
 
 [params]
 

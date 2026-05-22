@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://lxp581scgsyi"]
+
+[ext_resource type="Script" uid="uid://1w5oqn0c3ipi" path="res://cenas/inimigos/dourado.gd" id="1_rvgyx"]
+[ext_resource type="Texture2D" uid="uid://o7tx7duod3i3" path="res://sprites/sprites_inimigos/Dourado.png" id="2_rl37l"]
+[ext_resource type="Texture2D" uid="uid://eid3vl1a6vsg" path="res://sprites/spritesheet_explosao/spritesheet.png" id="3_rl37l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcump"]
+size = Vector2(28, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gauum"]
+size = Vector2(28, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcump"]
+atlas = ExtResource("3_rl37l")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gauum"]
+atlas = ExtResource("3_rl37l")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf2hr"]
+atlas = ExtResource("3_rl37l")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7rm7"]
+atlas = ExtResource("3_rl37l")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xp8dj"]
+atlas = ExtResource("3_rl37l")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ceref"]
+atlas = ExtResource("3_rl37l")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl82r"]
+atlas = ExtResource("3_rl37l")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4x40x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcump")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gauum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf2hr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7rm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xp8dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ceref")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl82r")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 8.0
+}]
+
+[node name="Dourado" type="CharacterBody2D" unique_id=1959356281]
+collision_mask = 4
+script = ExtResource("1_rvgyx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=705628197]
+scale = Vector2(2, 2)
+texture = ExtResource("2_rl37l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=330819178]
+visible = false
+shape = SubResource("RectangleShape2D_kcump")
+
+[node name="HitboxArea" type="Area2D" parent="." unique_id=45451736]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea" unique_id=588289320]
+shape = SubResource("RectangleShape2D_gauum")
+
+[node name="ExplosionSprite" type="AnimatedSprite2D" parent="." unique_id=1396196976]
+position = Vector2(-4.7683716e-07, 0)
+scale = Vector2(1.2708334, 1.1041666)
+sprite_frames = SubResource("SpriteFrames_4x40x")
+animation = &"explode"
+frame = 6
+frame_progress = 1.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=703872294]
+visible = false
