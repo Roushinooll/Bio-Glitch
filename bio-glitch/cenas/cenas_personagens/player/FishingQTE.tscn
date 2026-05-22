@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dgqc703n8ovtn"]
+
+[ext_resource type="Script" uid="uid://d2lw0k3plhdq5" path="res://cenas/cenas_personagens/player/fishing_qte.gd" id="1_qte"]
+
+[node name="FishingQTE" type="CanvasLayer" unique_id=1078420988]
+layer = 10
+script = ExtResource("1_qte")
+
+[node name="QTEPanel" type="Control" parent="." unique_id=1264490592]
+visible = false
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.7
+anchor_right = 0.5
+anchor_bottom = 0.7
+offset_left = -120.0
+offset_top = -60.0
+offset_right = 120.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BGPanel" type="ColorRect" parent="QTEPanel" unique_id=1218740187]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 245.0
+offset_bottom = 65.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="Label" type="Label" parent="QTEPanel" unique_id=696004447]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 30.0
+text = "[ Pressione F para fisgar! ]"
+horizontal_alignment = 1
+
+[node name="TimerBarBG" type="ColorRect" parent="QTEPanel" unique_id=17744805]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 35.0
+offset_right = 220.0
+offset_bottom = 55.0
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="TimerBar" type="ColorRect" parent="QTEPanel" unique_id=1303068201]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 35.0
+offset_right = 220.0
+offset_bottom = 55.0
+color = Color(0.2, 0.9, 0.2, 1)
