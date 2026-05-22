@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://c3oqqqnvn7met" path="res://cenas/cenas_personagens/player/fishing_attack.gd" id="1_hitbox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(24, 24)
+
+[node name="FishingHitbox" type="Area2D"]
+script = ExtResource("1_hitbox")
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hitbox")
+
+[node name="DebugRect" type="ColorRect" parent="."]
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+color = Color(1, 0.9, 0, 1)
