@@ -4,7 +4,7 @@ extends Area2D
 
 @export var travel_speed: float    = 500.0   # Velocidade de avanço (px/s)
 @export var max_range:   float    = 280.0   # Alcance máximo antes de se destruir (px)
-@export var base_damage: int      = 15      # Dano inicial aplicado no hit
+@export var base_damage: int = 0
 
 var _direction:      Vector2 = Vector2.RIGHT  
 var _distance_traveled: float = 0.0           
@@ -48,16 +48,21 @@ func launch(from_position: Vector2, direction: Vector2, owner_player: Node2D) ->
 
 
 func _on_body_entered(body: Node2D) -> void:
+	print("[DEBUG HITBOX] Encostei em: ", body.name)
 	if _hit_enemy:
 		return
 
-	if not body.is_in_group("inimigos"):
+	if not body.is_in_group("enemy"):
+		return
+
+	if body.has_method("can_be_hooked") and not body.can_be_hooked():
+		print("[HITBOX] A isca bateu e deslizou! Peixe invulnerável no momento.")
 		return
 
 	_hit_enemy = true
 
-	if body.has_method("receber_dano"):
-		body.receber_dano(base_damage)
+	if body.has_method("take_damage"):
+		body.take_damage(base_damage)
 
 	set_physics_process(false)
 

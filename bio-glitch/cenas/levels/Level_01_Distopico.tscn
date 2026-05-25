@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://buw3t0tk2djs4" path="res://cenas/cenas_personagens/player.tscn" id="2_hbbop"]
 [ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="3_2p82t"]
 [ext_resource type="PackedScene" uid="uid://cc2uq7idnpemu" path="res://cenas/inimigos/Pirarucu.tscn" id="3_2t2wh"]
+[ext_resource type="PackedScene" uid="uid://c7ypr6rlghv4d" path="res://cenas/cenas_personagens/peixe.tscn" id="3_h8oif"]
 [ext_resource type="PackedScene" uid="uid://c0xo2x0pnch27" path="res://cenas/inimigos/Pirara.tscn" id="4_2p82t"]
-[ext_resource type="PackedScene" uid="uid://b12ecgwnkt76p" path="res://cenas/inimigos/CardumeDourados.tscn" id="5_h8oif"]
-[ext_resource type="Script" uid="uid://ccmpenbhgabuo" path="res://cenas/levels/pirarucu_warning_label.gd" id="5_hbbop"]
+[ext_resource type="Script" uid="uid://b50pemcfkt1rc" path="res://cenas/levels/wave_1_trigger.gd" id="6_x5qc7"]
 [ext_resource type="PackedScene" uid="uid://bq0t7n406eh47" path="res://cenas/ui/HUD.tscn" id="8_x5qc7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx3kh"]
@@ -18,6 +18,9 @@ size = Vector2(3503, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sl3pc"]
 size = Vector2(3456, 23)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_to1m7"]
+size = Vector2(93.5, 254)
+
 [node name="Level01Distopico" type="Node2D" unique_id=1396872602]
 script = ExtResource("1_a74es")
 
@@ -25,14 +28,14 @@ script = ExtResource("1_a74es")
 
 [node name="Fundo" type="ColorRect" parent="Background" unique_id=184066320]
 z_index = -20
-offset_right = 3456.0
+offset_right = 11520.0
 offset_bottom = 648.0
 color = Color(0.16470589, 0.05882353, 0.05882353, 1)
 
 [node name="Chao" type="ColorRect" parent="Background" unique_id=1784268953]
 z_index = -10
 offset_top = 391.0
-offset_right = 3456.0
+offset_right = 11520.0
 offset_bottom = 648.0
 color = Color(0.2901961, 0.16470589, 0.101960786, 1)
 
@@ -42,30 +45,35 @@ color = Color(0.2901961, 0.16470589, 0.101960786, 1)
 visible = false
 
 [node name="ParedeEsquerda" type="StaticBody2D" parent="World/MapLimits" unique_id=8544878]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/MapLimits/ParedeEsquerda" unique_id=1592029815]
 position = Vector2(-11, 324)
 shape = SubResource("RectangleShape2D_nx3kh")
 
 [node name="ParedeDireita" type="StaticBody2D" parent="World/MapLimits" unique_id=856988109]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/MapLimits/ParedeDireita" unique_id=1212294524]
 position = Vector2(3468, 324.5)
 shape = SubResource("RectangleShape2D_nx3kh")
 
 [node name="ParedeCima" type="StaticBody2D" parent="World/MapLimits" unique_id=2038025695]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/MapLimits/ParedeCima" unique_id=275750890]
 position = Vector2(1728.5, -10)
 shape = SubResource("RectangleShape2D_kcivy")
 
 [node name="ParedeBaixo" type="StaticBody2D" parent="World/MapLimits" unique_id=1597029636]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/MapLimits/ParedeBaixo" unique_id=1287470772]
 position = Vector2(1729, 658)
 shape = SubResource("RectangleShape2D_kcivy")
 
 [node name="ParedeSuperiorDoChao" type="StaticBody2D" parent="World/MapLimits" unique_id=446253523]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/MapLimits/ParedeSuperiorDoChao" unique_id=600072936]
 position = Vector2(1729, 82.5)
@@ -74,33 +82,14 @@ shape = SubResource("RectangleShape2D_sl3pc")
 [node name="Players" type="Node2D" parent="." unique_id=630295948]
 
 [node name="Player" parent="Players" unique_id=662344364 instance=ExtResource("2_hbbop")]
-position = Vector2(576, 360)
+position = Vector2(577, 527)
+
+[node name="Peixe" parent="Players" unique_id=1974186269 instance=ExtResource("3_h8oif")]
+position = Vector2(487, 452)
 
 [node name="Interactables" type="Node2D" parent="." unique_id=1983216289]
 
-[node name="Pirarucu" parent="Interactables" unique_id=575496690 instance=ExtResource("3_2t2wh")]
-position = Vector2(3748, 174)
-normal_speed = 100.0
-
-[node name="Pirara" parent="Interactables" unique_id=1268779069 instance=ExtResource("4_2p82t")]
-position = Vector2(3523, 420)
-
-[node name="CardumeDourados" parent="Interactables" unique_id=414718617 instance=ExtResource("5_h8oif")]
-position = Vector2(3812, 784)
-
-[node name="SpawnOrigin" parent="Interactables/CardumeDourados" index="1" unique_id=1315427442]
-position = Vector2(650, 0)
-
 [node name="UI" type="CanvasLayer" parent="." unique_id=836740143]
-
-[node name="ObjectiveLabel" type="Label" parent="UI" unique_id=1178042511]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 620.0
-offset_bottom = 60.0
-theme_override_fonts/font = ExtResource("3_2p82t")
-theme_override_font_sizes/font_size = 10
-text = "Alguma coisa"
 
 [node name="FadeBlack" type="ColorRect" parent="UI" unique_id=844371445]
 visible = false
@@ -111,19 +100,60 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="PirarucuWarningLabel" type="Label" parent="UI" unique_id=174176659 groups=["pirarucu_warning_ui"]]
+[node name="RedFlash" type="ColorRect" parent="UI" unique_id=915184108]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 0)
+
+[node name="WaveText" type="Label" parent="UI" unique_id=1193504970]
+unique_name_in_owner = true
 visible = false
-offset_left = 1036.0
-offset_top = 20.0
-offset_right = 1136.0
-offset_bottom = 43.0
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -11.5
+offset_right = 28.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_2p82t")
-theme_override_font_sizes/font_size = 10
-text = "CUIDADO!!!"
-script = ExtResource("5_hbbop")
+theme_override_font_sizes/font_size = 70
+text = "Onda 1"
 
 [node name="Hud" type="Node2D" parent="." unique_id=689174620]
 
 [node name="Hud" parent="Hud" unique_id=2105037107 instance=ExtResource("8_x5qc7")]
 
-[editable path="Interactables/CardumeDourados"]
+[node name="Waves" type="Node2D" parent="." unique_id=1755626890]
+
+[node name="Wave1_Trigger" type="Area2D" parent="Waves" unique_id=286666547]
+script = ExtResource("6_x5qc7")
+cena_pirarucu = ExtResource("3_2t2wh")
+cena_pirara = ExtResource("4_2p82t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Waves/Wave1_Trigger" unique_id=1976962713]
+position = Vector2(1271.25, 519)
+shape = SubResource("RectangleShape2D_to1m7")
+
+[node name="Spawns" type="Node2D" parent="Waves" unique_id=1915839948]
+
+[node name="SpawnPirarucu" type="Marker2D" parent="Waves/Spawns" unique_id=1532151296]
+unique_name_in_owner = true
+position = Vector2(1798, 525)
+
+[node name="SpawnPirara1" type="Marker2D" parent="Waves/Spawns" unique_id=1408770822]
+unique_name_in_owner = true
+position = Vector2(2025, 452)
+
+[node name="SpawnPirara2" type="Marker2D" parent="Waves/Spawns" unique_id=308806817]
+unique_name_in_owner = true
+position = Vector2(2025, 604)

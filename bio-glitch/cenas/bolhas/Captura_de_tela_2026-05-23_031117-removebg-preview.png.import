@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eid3vl1a6vsg"
-path="res://.godot/imported/spritesheet.png-9ca1b895415e069de6173702bad6cbcb.ctex"
+uid="uid://cc2r17fkwjrtj"
+path="res://.godot/imported/Captura_de_tela_2026-05-23_031117-removebg-preview.png-68dc4281da3c18a1a791947f1fc6ebe5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/spritesheet_explosao/spritesheet.png"
-dest_files=["res://.godot/imported/spritesheet.png-9ca1b895415e069de6173702bad6cbcb.ctex"]
+source_file="res://cenas/bolhas/Captura_de_tela_2026-05-23_031117-removebg-preview.png"
+dest_files=["res://.godot/imported/Captura_de_tela_2026-05-23_031117-removebg-preview.png-68dc4281da3c18a1a791947f1fc6ebe5.ctex"]
 
 [params]
 

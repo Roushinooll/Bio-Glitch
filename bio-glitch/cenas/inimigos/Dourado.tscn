@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1w5oqn0c3ipi" path="res://cenas/inimigos/dourado.gd" id="1_rvgyx"]
 [ext_resource type="Texture2D" uid="uid://o7tx7duod3i3" path="res://sprites/sprites_inimigos/Dourado.png" id="2_rl37l"]
-[ext_resource type="Texture2D" uid="uid://eid3vl1a6vsg" path="res://sprites/spritesheet_explosao/spritesheet.png" id="3_rl37l"]
+[ext_resource type="Texture2D" uid="uid://eid3vl1a6vsg" path="res://sprites/spritesheet/spritesheet_explosao.png" id="3_rl37l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kcump"]
 size = Vector2(28, 16)
@@ -67,7 +67,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Dourado" type="CharacterBody2D" unique_id=1959356281]
+[node name="Dourado" type="CharacterBody2D" unique_id=1959356281 groups=["enemy"]]
 collision_mask = 4
 script = ExtResource("1_rvgyx")
 

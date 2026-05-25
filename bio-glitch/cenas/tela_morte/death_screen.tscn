@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cvivo55gr2go1"]
+
+[ext_resource type="Script" uid="uid://boefhs0o4g373" path="res://cenas/tela_morte/death_screen.gd" id="1_fl6cw"]
+[ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="1_ougyq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fl6cw"]
+bg_color = Color(0.06666667, 0.09411765, 0.10980392, 0.8)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.28235295, 0.8784314, 0.9019608, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_now5b"]
+bg_color = Color(0.02745098, 0.0627451, 0.07450981, 0.93333334)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.7058824, 0.05882353, 0.09411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpjjy"]
+bg_color = Color(0.08235294, 0.16470589, 0.1882353, 0.8666667)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.47843137, 1, 1, 1)
+
+[node name="DeathScreen" type="CanvasLayer" unique_id=943088690]
+script = ExtResource("1_fl6cw")
+
+[node name="Background" type="ColorRect" parent="." unique_id=482678453]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=150634273]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer" unique_id=912511429]
+layout_mode = 2
+theme_override_constants/separation = 300
+
+[node name="Label" type="Label" parent="CenterContainer/VBox" unique_id=1303264955]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ougyq")
+theme_override_font_sizes/font_size = 60
+text = "Se fudeu"
+
+[node name="RetryButton" type="Button" parent="CenterContainer/VBox" unique_id=1617163113]
+custom_minimum_size = Vector2(310, 62)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+theme_override_colors/font_hover_color = Color(0.6156863, 0.9843137, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_ougyq")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_fl6cw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_now5b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fpjjy")
+text = "Tentar Novamente
+"
+
+[connection signal="pressed" from="CenterContainer/VBox/RetryButton" to="." method="_on_retry_button_pressed"]

@@ -60,7 +60,8 @@ func _on_activation_area_body_entered(body: Node2D) -> void:
 	if start_only_once and already_started:
 		return
 	
-	if body.is_in_group("player") or body.name.to_lower().contains("player"):
+	# Mudamos aqui para ele só ativar quando o player correto entrar
+	if body.is_in_group("alvo_dourados"):
 		call_deferred("start_cardume")
 
 

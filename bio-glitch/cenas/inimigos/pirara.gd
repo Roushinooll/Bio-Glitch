@@ -1,28 +1,30 @@
 extends CharacterBody2D
 
-signal warning_started(enemy_name: String)
-signal warning_ended(enemy_name: String)
+signal morreu(inimigo_node)
 
-enum State {
-	IDLE,
-	MOVE_TO_ATTACK_POINT,
-	ATTACK,
-	RETREAT
+enum Estado {
+	PARADO,
+	INDO_PARA_ATAQUE,
+	ATACANDO,
+	RECUANDO,
+	SENDO_PUXADO,
+	CAINDO
 }
 
-@export var enemy_name: String = "Pirarara"
+@export var nome_do_inimigo: String = "Pirarara"
 
-@export var speed: float = 110.0
-@export var retreat_speed: float = 130.0
-@export var damage: int = 1
+@export var velocidade: float = 110.0
+@export var velocidade_de_recuo: float = 130.0
+@export var dano: int = 1
 
-@export var attack_distance: float = 55.0
-@export var attack_point_tolerance: float = 25.0
-@export var retreat_distance: float = 120.0
-@export var attack_hold_time: float = 0.18
+@export var distancia_de_ataque: float = 20.0 
+@export var tolerancia_ponto_ataque: float = 5.0 
 
-@export var sprite_faces_left: bool = true
-@export var mouth_offset_x: float = -28.0
+@export var distancia_de_recuo: float = 120.0
+@export var tempo_duracao_ataque: float = 0.18
+
+@export var sprite_olha_para_esquerda: bool = true
+@export var deslocamento_x_da_boca: float = -28.0
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var warning_area: Area2D = $WarningArea
@@ -30,220 +32,285 @@ enum State {
 @onready var bite_hitbox: Area2D = $BiteHitBox
 @onready var bite_hitbox_collision: CollisionShape2D = $BiteHitBox/CollisionShape2D
 
-var player: Node2D = null
-var state: State = State.IDLE
+@export var vida_maxima: int = 5
+var vida_atual: int
+var is_dead: bool = false
 
-var facing_direction: int = -1
-var attack_timer: float = 0.0
-var already_hit_player: bool = false
+var jogador: Node2D = null
+var estado_atual: Estado = Estado.PARADO
 
-var attack_point: Vector2 = Vector2.ZERO
-var retreat_point: Vector2 = Vector2.ZERO
+var direcao_do_olhar: int = -1
+var cronometro_de_ataque: float = 0.0
+var ja_acertou_jogador: bool = false
+
+var ponto_de_ataque: Vector2 = Vector2.ZERO
+var ponto_de_recuo: Vector2 = Vector2.ZERO
+
+# --- NOVA VARIÁVEL ---
+var meu_y_inicial: float = 0.0
 
 
 func _ready() -> void:
+	vida_atual = vida_maxima
+	# Salva a altura em que este peixe específico nasceu/está
+	meu_y_inicial = global_position.y
+
 	bite_hitbox.monitoring = false
 	bite_hitbox_collision.disabled = true
 
-	warning_area.body_entered.connect(_on_warning_area_body_entered)
-	warning_area.body_exited.connect(_on_warning_area_body_exited)
-
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
 	detection_area.body_exited.connect(_on_detection_area_body_exited)
-
 	bite_hitbox.body_entered.connect(_on_bite_hitbox_body_entered)
 
-	update_facing(-1)
+	atualizar_direcao(-1)
 
 
 func _physics_process(delta: float) -> void:
-	match state:
-		State.IDLE:
-			process_idle()
+	match estado_atual:
+		Estado.PARADO:
+			processar_parado()
+		Estado.INDO_PARA_ATAQUE:
+			processar_ida_para_ataque()
+		Estado.ATACANDO:
+			processar_ataque(delta)
+		Estado.RECUANDO:
+			processar_recuo()
+		Estado.SENDO_PUXADO:
+			move_and_slide()
+		Estado.CAINDO:
+			processar_queda()
 
-		State.MOVE_TO_ATTACK_POINT:
-			process_move_to_attack_point()
 
-		State.ATTACK:
-			process_attack(delta)
-
-		State.RETREAT:
-			process_retreat()
-
-
-func process_idle() -> void:
+func processar_parado() -> void:
 	velocity = Vector2.ZERO
 	move_and_slide()
 
-	if player != null:
-		prepare_attack_cycle()
+	if jogador != null:
+		preparar_ciclo_de_ataque()
 
 
-func prepare_attack_cycle() -> void:
-	if player == null:
-		state = State.IDLE
+func preparar_ciclo_de_ataque() -> void:
+	if jogador == null:
+		estado_atual = Estado.PARADO
 		return
 
-	if global_position.x > player.global_position.x:
-		facing_direction = -1
+	if global_position.x > jogador.global_position.x:
+		direcao_do_olhar = -1
 	else:
-		facing_direction = 1
+		direcao_do_olhar = 1
 
-	update_facing(facing_direction)
+	atualizar_direcao(direcao_do_olhar)
 
-	attack_point = player.global_position - Vector2(facing_direction * attack_distance, 0)
-	retreat_point = player.global_position - Vector2(facing_direction * retreat_distance, 0)
+	# --- CORREÇÃO DE POSICIONAMENTO ---
+	# Criamos o ponto usando o X do jogador com o deslocamento da distância de ataque
+	# E travamos o Y no Y inicial do próprio peixe.
+	var x_alvo_ataque = jogador.global_position.x - (direcao_do_olhar * distancia_de_ataque)
+	ponto_de_ataque = Vector2(x_alvo_ataque, meu_y_inicial)
+	
+	# Fazemos o mesmo para o ponto de recuo
+	var x_alvo_recuo = jogador.global_position.x - (direcao_do_olhar * distancia_de_recuo)
+	ponto_de_recuo = Vector2(x_alvo_recuo, meu_y_inicial)
+	# ----------------------------------
 
-	state = State.MOVE_TO_ATTACK_POINT
+	estado_atual = Estado.INDO_PARA_ATAQUE
 
 
-func process_move_to_attack_point() -> void:
-	if player == null:
-		state = State.IDLE
+func processar_ida_para_ataque() -> void:
+	if jogador == null:
+		estado_atual = Estado.PARADO
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
 
-	attack_point = player.global_position - Vector2(facing_direction * attack_distance, 0)
-	retreat_point = player.global_position - Vector2(facing_direction * retreat_distance, 0)
+	# Mantém os pontos atualizados acompanhando o X do player, mas travados no Y do peixe
+	ponto_de_ataque.x = jogador.global_position.x - (direcao_do_olhar * distancia_de_ataque)
+	ponto_de_recuo.x = jogador.global_position.x - (direcao_do_olhar * distancia_de_recuo)
 
-	var distance_to_attack_point := global_position.distance_to(attack_point)
+	var distancia_ate_ataque := global_position.distance_to(ponto_de_ataque)
 
-	if distance_to_attack_point <= attack_point_tolerance:
+	if distancia_ate_ataque <= tolerancia_ponto_ataque:
 		velocity = Vector2.ZERO
-		start_attack()
+		iniciar_ataque()
 		return
 
-	var direction := global_position.direction_to(attack_point)
-	velocity = direction * speed
+	var direcao := global_position.direction_to(ponto_de_ataque)
+	velocity = direcao * velocidade
 
 	move_and_slide()
 
+	for i in get_slide_collision_count():
+		var colisao = get_slide_collision(i)
+		var corpo_colidido = colisao.get_collider()
+		
+		if corpo_colidido != null and corpo_colidido.is_in_group("player"):
+			velocity = Vector2.ZERO
+			iniciar_ataque()
+			return
 
-func start_attack() -> void:
-	state = State.ATTACK
+
+func iniciar_ataque() -> void:
+	estado_atual = Estado.ATACANDO
 	velocity = Vector2.ZERO
-	attack_timer = attack_hold_time
-	already_hit_player = false
+	cronometro_de_ataque = tempo_duracao_ataque
+	ja_acertou_jogador = false
 
 	bite_hitbox.monitoring = true
 	bite_hitbox_collision.set_deferred("disabled", false)
 
-	call_deferred("check_bite_overlap")
+	call_deferred("verificar_sobreposicao_da_mordida")
 
 
-func process_attack(delta: float) -> void:
+func processar_ataque(delta: float) -> void:
 	velocity = Vector2.ZERO
 	move_and_slide()
 
-	attack_timer -= delta
+	cronometro_de_ataque -= delta
 
-	if attack_timer <= 0:
-		end_attack()
+	if cronometro_de_ataque <= 0:
+		encerrar_ataque()
 
 
-func end_attack() -> void:
+func encerrar_ataque() -> void:
 	bite_hitbox.monitoring = false
 	bite_hitbox_collision.set_deferred("disabled", true)
 
-	if player != null:
-		retreat_point = player.global_position - Vector2(facing_direction * retreat_distance, 0)
+	if jogador != null:
+		ponto_de_recuo.x = jogador.global_position.x - (direcao_do_olhar * distancia_de_recuo)
 
-	state = State.RETREAT
+	estado_atual = Estado.RECUANDO
 	velocity = Vector2.ZERO
 
 
-func process_retreat() -> void:
-	if player == null:
-		state = State.IDLE
+func processar_recuo() -> void:
+	if jogador == null:
+		estado_atual = Estado.PARADO
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
 
-	var distance_to_retreat_point := global_position.distance_to(retreat_point)
+	var distancia_ate_recuo := global_position.distance_to(ponto_de_recuo)
 
-	if distance_to_retreat_point <= 4.0:
-		global_position = retreat_point
+	# Se ele chegou muito perto do ponto de recuo, encerra o recuo
+	# Aumentei um pouquinho a tolerância para 8.0 para evitar travamentos físicos
+	if distancia_ate_recuo <= 8.0:
 		velocity = Vector2.ZERO
 
-		if global_position.x > player.global_position.x:
-			update_facing(-1)
+		if global_position.x > jogador.global_position.x:
+			atualizar_direcao(-1)
 		else:
-			update_facing(1)
+			atualizar_direcao(1)
 
-		prepare_attack_cycle()
+		preparar_ciclo_de_ataque()
 		return
 
-	var direction := global_position.direction_to(retreat_point)
+	var direcao := global_position.direction_to(ponto_de_recuo)
 
-	if direction.x < 0:
-		update_facing(-1)
-	elif direction.x > 0:
-		update_facing(1)
+	if direcao.x < 0:
+		atualizar_direcao(-1)
+	elif direcao.x > 0:
+		atualizar_direcao(1)
 
-	velocity = direction * retreat_speed
+	velocity = direcao * velocidade_de_recuo
 
 	move_and_slide()
 
 
-func update_facing(direction: int) -> void:
-	facing_direction = direction
+func atualizar_direcao(direcao: int) -> void:
+	direcao_do_olhar = direcao
 
-	if sprite_faces_left:
-		sprite.flip_h = direction > 0
+	if sprite_olha_para_esquerda:
+		sprite.flip_h = direcao > 0
 	else:
-		sprite.flip_h = direction < 0
+		sprite.flip_h = direcao < 0
 
-	bite_hitbox.position.x = abs(mouth_offset_x) * direction
+	bite_hitbox.position.x = abs(deslocamento_x_da_boca) * direcao
 
 
-func check_bite_overlap() -> void:
-	if already_hit_player:
+func verificar_sobreposicao_da_mordida() -> void:
+	if ja_acertou_jogador:
 		return
 
-	var bodies := bite_hitbox.get_overlapping_bodies()
+	var corpos := bite_hitbox.get_overlapping_bodies()
 
-	for body in bodies:
-		if body.is_in_group("player"):
-			hit_player(body)
+	for corpo in corpos:
+		if corpo.is_in_group("player"):
+			acertar_jogador(corpo)
 			return
 
 
-func hit_player(body: Node) -> void:
-	if already_hit_player:
+func acertar_jogador(corpo: Node) -> void:
+	if ja_acertou_jogador:
 		return
 
-	if not body.has_method("take_damage"):
+	if not corpo.has_method("take_damage"):
 		return
 
-	body.take_damage(damage)
-	already_hit_player = true
+	corpo.take_damage(dano)
+	ja_acertou_jogador = true
 
 
-func _on_bite_hitbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		hit_player(body)
+func _on_bite_hitbox_body_entered(corpo: Node2D) -> void:
+	if corpo.is_in_group("player"):
+		acertar_jogador(corpo)
+
+func _on_detection_area_body_entered(corpo: Node2D) -> void:
+	if corpo.is_in_group("player"):
+		jogador = corpo
+
+		if estado_atual == Estado.PARADO:
+			preparar_ciclo_de_ataque()
 
 
-func _on_warning_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		warning_started.emit(enemy_name)
+func _on_detection_area_body_exited(corpo: Node2D) -> void:
+	if corpo == jogador:
+		if estado_atual == Estado.PARADO:
+			jogador = null
 
+func take_damage(amount: int) -> void:
+	if is_dead:
+		return
 
-func _on_warning_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		warning_ended.emit(enemy_name)
+	vida_atual -= amount
+	print("[Inimigo] Recebeu dano: ", amount, " | Vida restante: ", vida_atual)
 
+	if vida_atual <= 0:
+		morrer()
 
-func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		player = body
+func morrer() -> void:
+	is_dead = true
+	estado_atual = Estado.CAINDO # Muda para o estado de queda livre
+	
+	# Desativa TODAS as camadas de colisão do peixe para ele não agarrar em nada enquanto cai
+	collision_layer = 0
+	collision_mask = 0
+	
+	# Desativa as áreas de ataque e detecção
+	bite_hitbox.monitoring = false
+	detection_area.monitoring = false
+	
+	print("[Inimigo] Morreu e começou a afundar!")
+	emit_signal("morreu", self)
+	
+	# Aguarda 2.5 segundos (tempo dele sair da tela) e deleta o inimigo do jogo
+	get_tree().create_timer(2.5).timeout.connect(queue_free)
 
-		if state == State.IDLE:
-			prepare_attack_cycle()
+func can_be_hooked() -> bool:
+	# O inimigo só pode ser fisgado se estiver vivo
+	return not is_dead
 
+func on_being_pulled(esta_sendo_puxado: bool) -> void:
+	if esta_sendo_puxado:
+		estado_atual = Estado.SENDO_PUXADO
+	else:
+		# Se ele foi puxado e já está morto, entra em queda livre
+		if is_dead:
+			estado_atual = Estado.CAINDO
+		else:
+			estado_atual = Estado.PARADO
+			preparar_ciclo_de_ataque()
 
-func _on_detection_area_body_exited(body: Node2D) -> void:
-	if body == player:
-		if state == State.IDLE:
-			player = null
+func processar_queda() -> void:
+	# Define uma velocidade apenas para baixo (Eixo Y positivo)
+	# 400.0 é um bom valor, mas você pode aumentar ou diminuir se quiser a queda mais rápida/lenta
+	velocity = Vector2(0, 400.0) 
+	move_and_slide()

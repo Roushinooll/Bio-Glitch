@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://4t362o1qrv06"]
+
+[ext_resource type="Texture2D" uid="uid://b3im1q47jblch" path="res://sprites/caixa_futurista (1).png" id="1_8qlm5"]
+[ext_resource type="Texture2D" uid="uid://o7tx7duod3i3" path="res://sprites/sprites_inimigos/Dourado.png" id="2_u14yf"]
+
+[node name="DialogScreen" type="Control" unique_id=1617823843]
+custom_minimum_size = Vector2(576, 144)
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -288.0
+offset_top = -164.0
+offset_right = 288.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Background" type="TextureRect" parent="." unique_id=1491080006]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8qlm5")
+
+[node name="HContainer" type="HBoxContainer" parent="Background" unique_id=1489946406]
+custom_minimum_size = Vector2(562, 130)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -65.0
+offset_right = 281.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Border" type="ColorRect" parent="Background/HContainer" unique_id=987941571]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+color = Color(0.44313726, 0.5294118, 0.7529412, 1)
+
+[node name="Faceset" type="TextureRect" parent="Background/HContainer/Border" unique_id=1776548371]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_u14yf")
+expand_mode = 1
+stretch_mode = 5

@@ -10,16 +10,16 @@
 "style": "Default_style",
 "suffix": ""
 },
-&"default_portrait": "Default",
+&"default_portrait": "default",
 &"description": "",
 &"display_name": "S.E.R.V.A",
 &"mirror": false,
 &"nicknames": [""],
 &"offset": Vector2(0, 0),
 &"portraits": {
-"Default": {
+"default": {
 "export_overrides": {
-"image": "\"res://dialogs/portraits/Portrait_SERVA.png\""
+"image": "\"res://sprites/sprite_personagens/peixe.png\""
 },
 "mirror": false,
 "offset": Vector2(0, 0),

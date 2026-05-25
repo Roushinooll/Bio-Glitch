@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b22v8ei8pbsxj"
-path="res://.godot/imported/player.png-368c329fd9e7cb82bc745bed0a3453df.ctex"
+uid="uid://cvagmupvq43y3"
+path="res://.godot/imported/axoloteFinal.png-3f1c7ff3ed80ea388e4a1037793886e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/sprite_personagens/player.png"
-dest_files=["res://.godot/imported/player.png-368c329fd9e7cb82bc745bed0a3453df.ctex"]
+source_file="res://sprites/sprite_personagens/axoloteFinal.png"
+dest_files=["res://.godot/imported/axoloteFinal.png-3f1c7ff3ed80ea388e4a1037793886e4.ctex"]
 
 [params]
 

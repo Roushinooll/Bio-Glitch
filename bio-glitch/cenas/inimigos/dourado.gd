@@ -2,12 +2,15 @@ extends CharacterBody2D
 
 @export var speed: float = 230.0
 @export var damage: int = 1
+@export var max_health: int = 2
+
+var current_health: int
 
 @export var direction: Vector2 = Vector2.LEFT
 
 @export var sprite_faces_left: bool = true
 
-@export var target_group: String = "player"
+@export var target_group: String = "alvo_dourados"
 @export var chase_player: bool = true
 @export var vertical_chase_strength: float = 0.65
 
@@ -32,6 +35,7 @@ var wave_strength := 0.0
 
 
 func _ready() -> void:
+	current_health = max_health
 	direction = direction.normalized()
 	
 	find_target()
@@ -139,7 +143,11 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if already_hit:
 		return
 	
-	if body.is_in_group(target_group) or body.has_method("take_damage"):
+	if body.is_in_group("enemy"):
+		return
+	# -------------------------------
+	
+	if body.is_in_group(target_group):
 		already_hit = true
 		
 		if body.has_method("take_damage"):
@@ -168,3 +176,13 @@ func die() -> void:
 func _on_screen_exited() -> void:
 	if destroy_when_out_of_screen:
 		queue_free()
+
+func take_damage(amount: int) -> void:
+	if not active or already_hit:
+		return
+		
+	current_health -= amount
+	
+	if current_health <= 0:
+		already_hit = true
+		die()

@@ -1,21 +1,24 @@
 [gd_scene format=3 uid="uid://buw3t0tk2djs4"]
 
-[ext_resource type="Texture2D" uid="uid://b22v8ei8pbsxj" path="res://sprites/sprite_personagens/player.png" id="1_8or6t"]
-[ext_resource type="Script" uid="uid://bri4hj2ao5b6c" path="res://cenas/cenas_personagens/player.gd" id="1_unwft"]
+[ext_resource type="Script" uid="uid://c07vyxqcdfqrg" path="res://cenas/cenas_personagens/player.gd" id="1_unwft"]
+[ext_resource type="Texture2D" uid="uid://p4qpg74wg3rq" path="res://sprites/sprite_personagens/Prota.png" id="2_3xto3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unwft"]
 size = Vector2(96, 316)
 
 [node name="Player" type="CharacterBody2D" unique_id=662344364 groups=["player"]]
+scale = Vector2(0.4, 0.4)
 collision_mask = 4
 script = ExtResource("1_unwft")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1460153396]
+visible = false
 position = Vector2(-6, -4)
 shape = SubResource("RectangleShape2D_unwft")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=664570376]
-texture = ExtResource("1_8or6t")
+scale = Vector2(3, 3)
+texture = ExtResource("2_3xto3")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1137968963]
 limit_right = 3456

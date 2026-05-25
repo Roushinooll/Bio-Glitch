@@ -1,17 +1,29 @@
 [gd_scene format=3 uid="uid://c7ypr6rlghv4d"]
 
 [ext_resource type="Script" uid="uid://dchxp1ip76iu0" path="res://cenas/cenas_personagens/peixe.gd" id="1_evbt0"]
-[ext_resource type="Texture2D" uid="uid://dbj0uogct26a0" path="res://sprites/sprite_personagens/peixe.png" id="1_tq34s"]
+[ext_resource type="Texture2D" uid="uid://cvagmupvq43y3" path="res://sprites/sprite_personagens/axoloteFinal.png" id="2_bahg8"]
+[ext_resource type="PackedScene" uid="uid://b4ojmhnd8vw6s" path="res://cenas/bolhas/BubbleProjectile.tscn" id="2_iabcy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evbt0"]
-size = Vector2(53, 32)
+size = Vector2(60, 33)
 
-[node name="Peixe" type="CharacterBody2D" unique_id=1974186269]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8fpl8"]
+
+[node name="Peixe" type="CharacterBody2D" unique_id=1974186269 groups=["alvo_dourados"]]
 script = ExtResource("1_evbt0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1071486478]
-position = Vector2(1.5, 0)
-shape = SubResource("RectangleShape2D_evbt0")
+bubble_scene = ExtResource("2_iabcy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1606886515]
-texture = ExtResource("1_tq34s")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_bahg8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1071486478]
+visible = false
+position = Vector2(-2, -2.5)
+shape = SubResource("RectangleShape2D_evbt0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1467082418]
+sprite_frames = SubResource("SpriteFrames_8fpl8")
+
+[node name="BubbleSpawnPoint" type="Marker2D" parent="." unique_id=1258338209]
+position = Vector2(30, -4)

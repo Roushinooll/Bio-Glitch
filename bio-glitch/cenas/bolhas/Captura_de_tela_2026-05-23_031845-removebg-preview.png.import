@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnm7rcabebjos"
-path="res://.godot/imported/background_futurista.jpg-23a069cf0f22470266fa533652c9136d.ctex"
+uid="uid://dxt13bt10imek"
+path="res://.godot/imported/Captura_de_tela_2026-05-23_031845-removebg-preview.png-fb92457396d8e79320890deb0bfcd95a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/sprites_fundos/background_futurista.jpg"
-dest_files=["res://.godot/imported/background_futurista.jpg-23a069cf0f22470266fa533652c9136d.ctex"]
+source_file="res://cenas/bolhas/Captura_de_tela_2026-05-23_031845-removebg-preview.png"
+dest_files=["res://.godot/imported/Captura_de_tela_2026-05-23_031845-removebg-preview.png-fb92457396d8e79320890deb0bfcd95a.ctex"]
 
 [params]
 
