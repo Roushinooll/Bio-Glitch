@@ -1,5 +1,7 @@
 extends Node2D
 
+signal morreu(cardume: Node2D)
+
 @export var dourado_scene: PackedScene
 
 @export var fish_amount: int = 8
@@ -37,6 +39,11 @@ extends Node2D
 var already_started := false
 var current_fish_index := 0
 
+# Controle interno para detectar quando todos os dourados morreram
+var _peixes_spawnados: int = 0
+var _peixes_mortos: int = 0
+var _spawn_concluido: bool = false
+
 
 func _ready() -> void:
 	if dourado_scene == null:
@@ -71,12 +78,17 @@ func start_cardume() -> void:
 	
 	already_started = true
 	current_fish_index = 0
+	_peixes_spawnados = 0
+	_peixes_mortos = 0
+	_spawn_concluido = false
 	
 	if spawn_one_by_one:
 		spawn_next_fish()
 		timer.start()
 	else:
 		spawn_all_fish()
+		_spawn_concluido = true
+		_verificar_cardume_concluido()
 
 
 func spawn_all_fish() -> void:
@@ -87,6 +99,8 @@ func spawn_all_fish() -> void:
 func spawn_next_fish() -> void:
 	if current_fish_index >= fish_amount:
 		timer.stop()
+		_spawn_concluido = true
+		_verificar_cardume_concluido()
 		return
 	
 	spawn_fish(current_fish_index)
@@ -124,6 +138,20 @@ func spawn_fish(index: int) -> void:
 			individual_wave_speed,
 			individual_wave_strength
 		)
+	
+	_peixes_spawnados += 1
+	# Conecta ao tree_exiting para saber quando o peixe morreu/saiu de cena
+	fish.tree_exiting.connect(_on_peixe_saiu)
+
+
+func _on_peixe_saiu() -> void:
+	_peixes_mortos += 1
+	_verificar_cardume_concluido()
+
+
+func _verificar_cardume_concluido() -> void:
+	if _spawn_concluido and _peixes_mortos >= _peixes_spawnados:
+		morreu.emit(self)
 
 
 func get_fish_offset(index: int) -> Vector2:
