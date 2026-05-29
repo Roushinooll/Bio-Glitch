@@ -31,6 +31,7 @@ var start_y: float = 0.0
 var player_inside_attack_area: bool = false
 
 @onready var attack_area: Area2D = $AttackArea
+@onready var explosion_sound: AudioStreamPlayer = $ExplosionSound
 
 @export var max_life: int = 3
 var current_life: int = 3
@@ -207,6 +208,8 @@ func die() -> void:
 	is_dead = true
 	
 	morreu.emit(self)
+	explosion_sound.volume_db = -30.0
+	explosion_sound.play()
 	
 	$CollisionShape2D.set_deferred("disabled", true)
 	attack_area.set_deferred("monitoring", false)

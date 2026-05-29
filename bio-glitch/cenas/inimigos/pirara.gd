@@ -30,6 +30,7 @@ enum Estado {
 @onready var detection_area: Area2D = $DetectionArea
 @onready var bite_hitbox: Area2D = $BiteHitBox
 @onready var bite_hitbox_collision: CollisionShape2D = $BiteHitBox/CollisionShape2D
+@onready var explosion_sound: AudioStreamPlayer = $ExplosionSound
 
 @export var vida_maxima: int = 5
 var vida_atual: int
@@ -289,6 +290,8 @@ func morrer() -> void:
 	
 	print("[Inimigo] Morreu e começou a afundar!")
 	emit_signal("morreu", self)
+	explosion_sound.volume_db = -15.0
+	explosion_sound.play()
 	
 	# Aguarda 2.5 segundos (tempo dele sair da tela) e deleta o inimigo do jogo
 	get_tree().create_timer(2.5).timeout.connect(queue_free)

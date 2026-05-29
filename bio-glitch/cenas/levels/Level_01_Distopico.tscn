@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b12ecgwnkt76p" path="res://cenas/inimigos/CardumeDourados.tscn" id="10_jgd87"]
 [ext_resource type="Script" uid="uid://wyi5io8jpmlk" path="res://cenas/levels/wave_3_trigger.gd" id="11_nxm3l"]
 [ext_resource type="Script" uid="uid://3btsrr64mf63" path="res://cenas/levels/wave_2_trigger.gd" id="11_waqy4"]
+[ext_resource type="AudioStream" uid="uid://duusslq07od8i" path="res://audio/ost_distopico.mp3" id="12_nxm3l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx3kh"]
 size = Vector2(23, 649)
@@ -258,3 +259,7 @@ position = Vector2(2911, 465)
 [node name="SpawnCardume_W3_E3B" type="Marker2D" parent="Waves/Wave3_Trigger/Spawns" unique_id=654132539]
 unique_name_in_owner = true
 position = Vector2(3069, 430)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=599864229]
+stream = ExtResource("12_nxm3l")
+parameters/looping = false

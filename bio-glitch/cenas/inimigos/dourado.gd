@@ -23,6 +23,7 @@ var current_health: int
 @onready var hitbox_collision: CollisionShape2D = $HitboxArea/CollisionShape2D
 @onready var explosion_sprite: AnimatedSprite2D = $ExplosionSprite
 @onready var visible_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var explosion_sound: AudioStreamPlayer = $ExplosionSound
 
 var active := true
 var already_hit := false
@@ -165,6 +166,8 @@ func die() -> void:
 	hitbox_collision.set_deferred("disabled", true)
 	
 	sprite.visible = false
+	explosion_sound.volume_db = -15.0
+	explosion_sound.play()
 	
 	if explosion_sprite.sprite_frames != null and explosion_sprite.sprite_frames.has_animation("explode"):
 		explosion_sprite.visible = true
