@@ -39,15 +39,12 @@ signal morreu(cardume: Node2D)
 var already_started := false
 var current_fish_index := 0
 
-# Controle interno para detectar quando todos os dourados morreram
 var _peixes_spawnados: int = 0
 var _peixes_mortos: int = 0
 var _spawn_concluido: bool = false
 
-
 func _ready() -> void:
 	if dourado_scene == null:
-		push_error("ERRO: Coloque a cena DouradoSuicida.tscn no campo Dourado Scene do Inspector.")
 		return
 	
 	timer.wait_time = time_between_spawns
@@ -59,7 +56,6 @@ func _ready() -> void:
 	if auto_start:
 		start_cardume()
 
-
 func _on_activation_area_body_entered(body: Node2D) -> void:
 	if not activate_on_player_enter:
 		return
@@ -67,10 +63,8 @@ func _on_activation_area_body_entered(body: Node2D) -> void:
 	if start_only_once and already_started:
 		return
 	
-	# Mudamos aqui para ele só ativar quando o player correto entrar
 	if body.is_in_group("alvo_dourados"):
 		call_deferred("start_cardume")
-
 
 func start_cardume() -> void:
 	if start_only_once and already_started:
@@ -90,11 +84,9 @@ func start_cardume() -> void:
 		_spawn_concluido = true
 		_verificar_cardume_concluido()
 
-
 func spawn_all_fish() -> void:
 	for i in range(fish_amount):
 		spawn_fish(i)
-
 
 func spawn_next_fish() -> void:
 	if current_fish_index >= fish_amount:
@@ -106,10 +98,8 @@ func spawn_next_fish() -> void:
 	spawn_fish(current_fish_index)
 	current_fish_index += 1
 
-
 func _on_timer_timeout() -> void:
 	spawn_next_fish()
-
 
 func spawn_fish(index: int) -> void:
 	var fish = dourado_scene.instantiate()
@@ -143,16 +133,13 @@ func spawn_fish(index: int) -> void:
 	# Conecta ao tree_exiting para saber quando o peixe morreu/saiu de cena
 	fish.tree_exiting.connect(_on_peixe_saiu)
 
-
 func _on_peixe_saiu() -> void:
 	_peixes_mortos += 1
 	_verificar_cardume_concluido()
 
-
 func _verificar_cardume_concluido() -> void:
 	if _spawn_concluido and _peixes_mortos >= _peixes_spawnados:
 		morreu.emit(self)
-
 
 func get_fish_offset(index: int) -> Vector2:
 	var angle := index * 1.7
