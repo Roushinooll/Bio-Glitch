@@ -1,72 +1,219 @@
 [gd_scene format=3 uid="uid://dgqc703n8ovtn"]
 
 [ext_resource type="Script" uid="uid://d2lw0k3plhdq5" path="res://cenas/cenas_personagens/player/fishing_qte.gd" id="1_qte"]
+[ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="2_0kdq1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kdq1"]
+bg_color = Color(0.08627451, 0.105882354, 0.10980392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3137255, 0.38039216, 0.3882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xy27"]
+bg_color = Color(0.03529412, 0.047058824, 0.050980393, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.16470589, 0.2, 0.20392157, 1)
 
 [node name="FishingQTE" type="CanvasLayer" unique_id=1078420988]
 layer = 10
 script = ExtResource("1_qte")
 qte_duration = 0.8
 
-[node name="QTEPanel" type="Control" parent="." unique_id=1264490592]
-layout_mode = 3
-anchor_left = 0.5
-anchor_top = 0.7
-anchor_right = 0.5
-anchor_bottom = 0.7
-offset_left = -120.0
-offset_top = -60.0
-offset_right = 120.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="QTEPanel" type="Panel" parent="." unique_id=2012267545]
+offset_left = 416.0
+offset_top = 288.0
+offset_right = 736.0
+offset_bottom = 360.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0kdq1")
 
-[node name="BGPanel" type="ColorRect" parent="QTEPanel" unique_id=1218740187]
+[node name="BGPanel" type="Panel" parent="QTEPanel" unique_id=1405574961]
 layout_mode = 0
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 245.0
-offset_bottom = 65.0
-color = Color(0, 0, 0, 0.7)
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 314.0
+offset_bottom = 66.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1xy27")
 
-[node name="Label" type="Label" parent="QTEPanel" unique_id=696004447]
+[node name="Label" type="Label" parent="QTEPanel" unique_id=1909732616]
 layout_mode = 0
-offset_right = 240.0
-offset_bottom = 30.0
-text = "[ Pressione F para fisgar! ]"
+offset_top = 8.0
+offset_right = 320.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0.8627451, 0.9019608, 0.9019608, 1)
+theme_override_colors/font_shadow_color = Color(0.11372549, 0.15686275, 0.15686275, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_0kdq1")
+theme_override_font_sizes/font_size = 10
+text = "FISGUE!"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TimerBarBG" type="ColorRect" parent="QTEPanel" unique_id=17744805]
+[node name="TimerBarBG" type="ColorRect" parent="QTEPanel" unique_id=2013891670]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 35.0
-offset_right = 220.0
-offset_bottom = 55.0
-color = Color(0.2, 0.2, 0.2, 1)
+offset_left = 60.0
+offset_top = 38.0
+offset_right = 260.0
+offset_bottom = 52.0
+color = Color(0.0627451, 0.09411765, 0.101960786, 1)
 
-[node name="TimerBar" type="ColorRect" parent="QTEPanel" unique_id=1303068201]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.047000002
-anchor_top = 0.071
-anchor_right = -0.047000002
-anchor_bottom = 0.071
-offset_left = 31.28
-offset_top = 30.429993
-offset_right = 231.28
-offset_bottom = 50.429993
-color = Color(1, 0, 0, 1)
-
-[node name="GreenZone" type="ColorRect" parent="QTEPanel" unique_id=1117243065]
+[node name="GreenZone" type="ColorRect" parent="QTEPanel" unique_id=1562040852]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 35.399994
-offset_right = 115.0
-offset_bottom = 55.399994
-color = Color(0, 1, 0, 1)
+offset_left = 190.0
+offset_top = 38.0
+offset_right = 230.0
+offset_bottom = 52.0
+color = Color(0.44705883, 1, 0.24705882, 1)
 
-[node name="Cursor" type="ColorRect" parent="QTEPanel" unique_id=2118981632]
+[node name="ZoneScratch1" type="ColorRect" parent="QTEPanel/GreenZone" unique_id=1917439125]
 layout_mode = 0
-offset_left = 26.0
-offset_top = 30.399994
-offset_right = 30.0
-offset_bottom = 58.399994
+offset_left = 5.0
+offset_right = 7.0
+offset_bottom = 14.0
+color = Color(0.050980393, 0.07058824, 0.050980393, 0.47058824)
+
+[node name="ZoneScratch2" type="ColorRect" parent="QTEPanel/GreenZone" unique_id=38384413]
+layout_mode = 0
+offset_left = 17.0
+offset_right = 19.0
+offset_bottom = 14.0
+color = Color(0.050980393, 0.07058824, 0.050980393, 1)
+
+[node name="ColorRect" type="ColorRect" parent="QTEPanel/GreenZone" unique_id=50112050]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 32.0
+offset_bottom = 14.0
+color = Color(0.050980393, 0.07058824, 0.050980393, 0.47058824)
+
+[node name="Cursor" type="ColorRect" parent="QTEPanel" unique_id=586902033]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 30.0
+offset_right = 72.0
+offset_bottom = 56.0
+color = Color(1, 1, 1, 0)
+
+[node name="CursorCap" type="ColorRect" parent="QTEPanel/Cursor" unique_id=1021734749]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 11.0
+offset_bottom = 3.0
+color = Color(0.41568628, 0.46666667, 0.47058824, 1)
+
+[node name="CursorStem" type="ColorRect" parent="QTEPanel/Cursor" unique_id=1658313993]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 7.0
+offset_bottom = 17.0
+color = Color(0.827451, 0.87058824, 0.87058824, 1)
+
+[node name="CursorTipLeft" type="ColorRect" parent="QTEPanel/Cursor" unique_id=800994031]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 17.0
+offset_right = 5.0
+offset_bottom = 19.0
+color = Color(0.827451, 0.87058824, 0.87058824, 1)
+
+[node name="CursorTipCenter" type="ColorRect" parent="QTEPanel/Cursor" unique_id=483683453]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 19.0
+offset_right = 7.0
+offset_bottom = 21.0
+color = Color(0.91764706, 0.9490196, 0.9490196, 1)
+
+[node name="CursorTipRight" type="ColorRect" parent="QTEPanel/Cursor" unique_id=774167835]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 17.0
+offset_right = 9.0
+offset_bottom = 19.0
+color = Color(0.827451, 0.87058824, 0.87058824, 1)
+
+[node name="CursorLight" type="ColorRect" parent="QTEPanel/Cursor" unique_id=812537208]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 4.0
+offset_right = 3.0
+offset_bottom = 6.0
+color = Color(0.60784316, 0.22745098, 0.18431373, 1)
+
+[node name="TopLine" type="ColorRect" parent="QTEPanel" unique_id=1963160653]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 2.0
+offset_right = 96.0
+offset_bottom = 4.0
+color = Color(0.60784316, 0.22745098, 0.18431373, 1)
+
+[node name="BottomLine" type="ColorRect" parent="QTEPanel" unique_id=19583564]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 68.0
+offset_right = 304.0
+offset_bottom = 70.0
+color = Color(0.49411765, 0.20392157, 0.16078432, 1)
+
+[node name="LeftCorner" type="ColorRect" parent="QTEPanel" unique_id=909703949]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 30.0
+offset_right = 18.0
+offset_bottom = 32.0
+color = Color(0.60784316, 0.22745098, 0.18431373, 1)
+
+[node name="RightCorner" type="ColorRect" parent="QTEPanel" unique_id=42261737]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 30.0
+offset_right = 312.0
+offset_bottom = 32.0
+color = Color(0.60784316, 0.22745098, 0.18431373, 1)
+
+[node name="Tick1" type="ColorRect" parent="QTEPanel" unique_id=805636369]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 38.0
+offset_right = 94.0
+offset_bottom = 52.0
+color = Color(0.14901961, 0.21960784, 0.22745098, 1)
+
+[node name="Tick2" type="ColorRect" parent="QTEPanel" unique_id=254372026]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 38.0
+offset_right = 127.0
+offset_bottom = 52.0
+color = Color(0.14901961, 0.21960784, 0.22745098, 1)
+
+[node name="Tick3" type="ColorRect" parent="QTEPanel" unique_id=915657308]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 38.0
+offset_right = 161.0
+offset_bottom = 52.0
+color = Color(0.14901961, 0.21960784, 0.22745098, 1)
+
+[node name="Tick4" type="ColorRect" parent="QTEPanel" unique_id=177853598]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 38.0
+offset_right = 194.0
+offset_bottom = 52.0
+color = Color(0.14901961, 0.21960784, 0.22745098, 1)
+
+[node name="Tick5" type="ColorRect" parent="QTEPanel" unique_id=4892671]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 38.0
+offset_right = 227.0
+offset_bottom = 52.0
+color = Color(0.14901961, 0.21960784, 0.22745098, 1)
