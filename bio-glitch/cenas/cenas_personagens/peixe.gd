@@ -5,16 +5,13 @@ var can_move := true
 
 @export var margin: float = 30.0
 
-# --- NOVAS VARIÁVEIS DE ATAQUE ---
 @export var bubble_scene: PackedScene
 @export var attack_cooldown: float = 0.4
 
 var last_direction: Vector2 = Vector2.RIGHT
 var can_attack: bool = true
 
-# Pega o marcador da boca do peixe
 @onready var spawn_point: Marker2D = $BubbleSpawnPoint
-# ---------------------------------
 
 func _physics_process(delta: float) -> void:
 	if not can_move:
@@ -43,40 +40,26 @@ func _physics_process(delta: float) -> void:
 		shoot_bubble()
 	# -----------------------------
 
-# --- NOVAS FUNÇÕES ---
 func update_spawn_point_position() -> void:
-	# Isso garante que a bolha saia da boca dependendo de onde o peixe olha.
-	# Multiplicamos a direção pela distância que a boca fica do centro do player.
-	# O valor '20.0' é a distância em pixels. Aumente ou diminua conforme o tamanho do seu sprite.
 	spawn_point.position = last_direction * 20.0
 
 func shoot_bubble() -> void:
-	# Proteção caso você esqueça de arrastar a cena no Inspector
 	if bubble_scene == null:
 		push_warning("Atenção: A cena da bolha não foi arrastada no Inspector do Player!")
 		return
 		
-	# Inicia o cooldown
 	can_attack = false
 	
-	# Instancia a bolha
 	var bubble = bubble_scene.instantiate()
 	
-	# Adicionamos a bolha na raiz do jogo (get_parent()), NÃO no player.
-	# Se adicionar no player, a bolha vai seguir o peixe depois de atirada.
 	get_parent().add_child(bubble)
 	
-	# Coloca a bolha na posição do Marker2D
 	bubble.global_position = spawn_point.global_position
-	# Define para qual lado a bolha vai viajar
 	bubble.direction = last_direction
 	
-	# Espera o tempo de cooldown acabar para poder atirar de novo
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
-# ---------------------
 
-# Sua função mantida 100% igual
 func limit_inside_player1_camera() -> void:
 	var camera := get_viewport().get_camera_2d()
 

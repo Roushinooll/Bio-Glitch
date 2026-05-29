@@ -12,9 +12,9 @@ radius = 300.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52g8r"]
 
 [node name="Pirara" type="CharacterBody2D" unique_id=1268779069 groups=["enemy"]]
-collision_layer = 4
+collision_layer = 2
 script = ExtResource("1_n5pv5")
-distancia_de_recuo = 200.0
+velocidade_de_recuo = 250.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=711576528]
 texture = ExtResource("1_g5r6c")

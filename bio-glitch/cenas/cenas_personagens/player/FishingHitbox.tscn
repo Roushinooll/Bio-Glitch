@@ -7,7 +7,7 @@ size = Vector2(24, 24)
 
 [node name="FishingHitbox" type="Area2D" unique_id=1608160784]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 2
 script = ExtResource("1_hitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=269340264]
