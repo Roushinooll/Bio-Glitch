@@ -27,7 +27,6 @@ enum Estado {
 @export var deslocamento_x_da_boca: float = -28.0
 
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var warning_area: Area2D = $WarningArea
 @onready var detection_area: Area2D = $DetectionArea
 @onready var bite_hitbox: Area2D = $BiteHitBox
 @onready var bite_hitbox_collision: CollisionShape2D = $BiteHitBox/CollisionShape2D

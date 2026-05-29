@@ -58,6 +58,9 @@ func _physics_process(delta: float) -> void:
 	if chase_player and target != null and is_instance_valid(target):
 		move_direction = get_suicide_direction()
 	
+	# Atualiza a direção interna para o flip do sprite acompanhar o movimento real
+	direction = move_direction
+
 	velocity = move_direction * speed
 	move_and_slide()
 	update_sprite_direction()
@@ -114,22 +117,17 @@ func get_suicide_direction() -> Vector2:
 	if target == null or not is_instance_valid(target):
 		return direction
 	
-	var x_direction := direction.x
-	
-	if x_direction == 0:
-		x_direction = -1
-	
 	var time_wave := sin(Time.get_ticks_msec() / 1000.0 * wave_speed + wave_offset) * wave_strength
 	
 	var target_position := target.global_position + target_offset
 	target_position.y += time_wave
-	
-	var y_difference := target_position.y - global_position.y
-	
-	var y_direction: float = clampf(y_difference / 200.0, -1.0, 1.0)
-	y_direction *= vertical_chase_strength
-	
-	return Vector2(x_direction, y_direction).normalized()
+
+	# --- CORREÇÃO ---
+	# Antes: o X ficava travado na direção de spawn, então ao passar pelo alvo
+	# o peixe continuava reto para sempre.
+	# Agora: aponta diretamente para o alvo em X e Y, perseguindo em todas as direções.
+	var to_target := target_position - global_position
+	return to_target.normalized()
 
 
 func update_sprite_direction() -> void:
@@ -145,8 +143,8 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	
 	if body.is_in_group("enemy"):
 		return
-	# -------------------------------
 	
+	# Só causa dano se for do grupo alvo correto (axolote), não o player principal
 	if body.is_in_group(target_group):
 		already_hit = true
 		
@@ -155,6 +153,9 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		
 		if die_when_hit_player:
 			die()
+	elif body.is_in_group("player_principal") and not body.is_in_group(target_group):
+		# Colide fisicamente mas não causa dano nem morre — apenas passa pelo player principal
+		pass
 
 
 func die() -> void:

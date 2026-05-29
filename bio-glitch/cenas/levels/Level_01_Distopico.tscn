@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://c0xo2x0pnch27" path="res://cenas/inimigos/Pirara.tscn" id="4_2p82t"]
 [ext_resource type="Script" uid="uid://b50pemcfkt1rc" path="res://cenas/levels/wave_1_trigger.gd" id="6_x5qc7"]
 [ext_resource type="PackedScene" uid="uid://bq0t7n406eh47" path="res://cenas/ui/HUD.tscn" id="8_x5qc7"]
+[ext_resource type="PackedScene" uid="uid://b12ecgwnkt76p" path="res://cenas/inimigos/CardumeDourados.tscn" id="10_jgd87"]
+[ext_resource type="Script" uid="uid://wyi5io8jpmlk" path="res://cenas/levels/wave_3_trigger.gd" id="11_nxm3l"]
+[ext_resource type="Script" uid="uid://3btsrr64mf63" path="res://cenas/levels/wave_2_trigger.gd" id="11_waqy4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nx3kh"]
 size = Vector2(23, 649)
@@ -20,6 +23,12 @@ size = Vector2(3456, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_to1m7"]
 size = Vector2(93.5, 254)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5qc7"]
+size = Vector2(698, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgd87"]
+size = Vector2(815, 259)
 
 [node name="Level01Distopico" type="Node2D" unique_id=1396872602]
 script = ExtResource("1_a74es")
@@ -157,3 +166,95 @@ position = Vector2(2025, 452)
 [node name="SpawnPirara2" type="Marker2D" parent="Waves/Spawns" unique_id=308806817]
 unique_name_in_owner = true
 position = Vector2(2025, 604)
+
+[node name="Wave2_Trigger" type="Area2D" parent="Waves" unique_id=785309820]
+script = ExtResource("11_waqy4")
+cena_pirarucu = ExtResource("3_2t2wh")
+cena_pirara = ExtResource("4_2p82t")
+cena_cardume = ExtResource("10_jgd87")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Waves/Wave2_Trigger" unique_id=1075350808]
+position = Vector2(2467, 520)
+shape = SubResource("RectangleShape2D_x5qc7")
+
+[node name="Spawns" type="Node2D" parent="Waves/Wave2_Trigger" unique_id=1193535511]
+
+[node name="SpawnPirarucu2" type="Marker2D" parent="Waves/Wave2_Trigger/Spawns" unique_id=1897850138]
+unique_name_in_owner = true
+position = Vector2(2480, 565)
+
+[node name="SpawnPirara3" type="Marker2D" parent="Waves/Wave2_Trigger/Spawns" unique_id=1005089737]
+unique_name_in_owner = true
+position = Vector2(2630, 446)
+
+[node name="SpawnPirara4" type="Marker2D" parent="Waves/Wave2_Trigger/Spawns" unique_id=1260452254]
+unique_name_in_owner = true
+position = Vector2(2631, 603)
+
+[node name="SpawnCardume1" type="Marker2D" parent="Waves/Wave2_Trigger/Spawns" unique_id=393943065]
+unique_name_in_owner = true
+position = Vector2(2373, 423)
+
+[node name="SpawnCardume2" type="Marker2D" parent="Waves/Wave2_Trigger/Spawns" unique_id=1416229809]
+unique_name_in_owner = true
+position = Vector2(2373, 451)
+
+[node name="SpawnCardume3" type="Marker2D" parent="Waves/Wave2_Trigger/Spawns" unique_id=2007029383]
+unique_name_in_owner = true
+position = Vector2(2373, 483)
+
+[node name="Wave3_Trigger" type="Area2D" parent="Waves" unique_id=1978763623]
+script = ExtResource("11_nxm3l")
+cena_pirarucu = ExtResource("3_2t2wh")
+cena_pirara = ExtResource("4_2p82t")
+cena_cardume = ExtResource("10_jgd87")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Waves/Wave3_Trigger" unique_id=195740621]
+position = Vector2(3235.5, 519.5)
+shape = SubResource("RectangleShape2D_jgd87")
+
+[node name="Spawns" type="Node2D" parent="Waves/Wave3_Trigger" unique_id=1817270880]
+
+[node name="SpawnPirara_W3_1" type="Marker2D" parent="Waves/Wave3_Trigger/Spawns" unique_id=2107202059]
+unique_name_in_owner = true
+position = Vector2(3449, 609)
+
+[node name="SpawnPirara_W3_2" type="Marker2D" parent="Waves/Wave3_Trigger/Spawns" unique_id=1558686732]
+unique_name_in_owner = true
+position = Vector2(3441, 522)
+
+[node name="SpawnPirara_W3_3" type="Marker2D" parent="Waves/Wave3_Trigger/Spawns" unique_id=424929377]
+unique_name_in_owner = true
+position = Vector2(3440, 452)
+
+[node name="SpawnPirarucu_W3_1" type="Marker2D" parent="Waves/Wave3_Trigger/Spawns" unique_id=1320855309]
+unique_name_in_owner = true
+position = Vector2(3352, 611)
+
+[node name="SpawnPirarucu_W3_2" type="Marker2D" parent="Waves/Wave3_Trigger/Spawns" unique_id=188843487]
+unique_name_in_owner = true
+position = Vector2(3340, 526)
+
+[node name="SpawnCardume_W3_E1A" type="Marker2D" parent="Waves/Wave3_Trigger/Spawns" unique_id=893201588]
+unique_name_in_owner = true
+position = Vector2(3069, 429)
+
+[node name="SpawnCardume_W3_E1B" type="Marker2D" parent="Waves/Wave3_Trigger/Spawns" unique_id=557679088]
+unique_name_in_owner = true
+position = Vector2(3069, 466)
+
+[node name="SpawnCardume_W3_E2A" type="Marker2D" parent="Waves/Wave3_Trigger/Spawns" unique_id=452440332]
+unique_name_in_owner = true
+position = Vector2(3070, 432)
+
+[node name="SpawnCardume_W3_E2B" type="Marker2D" parent="Waves/Wave3_Trigger/Spawns" unique_id=394058656]
+unique_name_in_owner = true
+position = Vector2(2910, 418)
+
+[node name="SpawnCardume_W3_E3A" type="Marker2D" parent="Waves/Wave3_Trigger/Spawns" unique_id=1799679142]
+unique_name_in_owner = true
+position = Vector2(2911, 465)
+
+[node name="SpawnCardume_W3_E3B" type="Marker2D" parent="Waves/Wave3_Trigger/Spawns" unique_id=654132539]
+unique_name_in_owner = true
+position = Vector2(3069, 430)

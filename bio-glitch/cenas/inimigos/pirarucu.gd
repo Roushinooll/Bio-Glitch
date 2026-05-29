@@ -174,6 +174,14 @@ func flip_sprite(is_retreating: bool) -> void:
 	if my_sprite:
 		my_sprite.flip_h = is_retreating
 
+	# --- CORREÇÃO: espelha o hitbox de detecção junto com o sprite ---
+	# Quando o peixe está de frente (esquerda): área fica em -279 (na frente)
+	# Quando o peixe está de costas (direita):  área fica em +279 (na frente)
+	var attack_shape = get_node_or_null("AttackArea/CollisionShape2D")
+	if attack_shape:
+		attack_shape.position.x = 279.0 if is_retreating else -279.0
+	# -----------------------------------------------------------------
+
 func can_be_hooked() -> bool:
 	# Essa é a função que conversa com a Hitbox
 	# Só permite ser pescado se estiver nadando de boas ou parando para preparar
