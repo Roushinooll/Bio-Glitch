@@ -37,7 +37,6 @@ func _ready() -> void:
 	_qte_node.qte_succeeded.connect(_on_qte_succeeded)
 	_qte_node.qte_failed.connect(_on_qte_failed)
 
-
 func _physics_process(delta: float) -> void:
 	if not pode_andar:
 		velocity = Vector2.ZERO
@@ -59,7 +58,6 @@ func _physics_process(delta: float) -> void:
 	velocity = input_vector * speed
 	move_and_slide()
 
-
 func take_damage(amount: int) -> void:
 	if is_dead:
 		return
@@ -75,7 +73,6 @@ func take_damage(amount: int) -> void:
 	if current_life <= 0:
 		die()
 
-
 func heal(amount: int) -> void:
 	if is_dead:
 		return
@@ -88,7 +85,6 @@ func heal(amount: int) -> void:
 
 	life_changed.emit(current_life, max_life)
 
-
 func die() -> void:
 	if is_dead:
 		return
@@ -100,20 +96,15 @@ func die() -> void:
 	
 	player_died.emit()
 	
-	get_tree().change_scene_to_file("res://cenas/tela_morte/death_screen.tscn")
+	get_tree().change_scene_to_file("res://cenas/tela_morte/TelaGameOver.tscn")
 
-
-# Área do ataque 
 func _handle_attack_input(delta: float) -> void:
-	# Desconta o cooldown se ele estiver ativo
 	if _cooldown_timer > 0.0:
 		_cooldown_timer -= delta
 
 	if Input.is_action_just_pressed("attack_fisgar") and _cooldown_timer <= 0.0:
 		_launch_fishing_attack()
 
-
-## Direção da hitbox
 func _launch_fishing_attack() -> void:
 	if is_instance_valid(_active_hitbox):
 		return
@@ -133,25 +124,19 @@ func _launch_fishing_attack() -> void:
 
 	print("[Player] Ataque de fisgar lançado para ", "direita" if _facing_direction > 0 else "esquerda")
 
-
-## Marca o hit na hitbox
 func _on_enemy_hooked(enemy: Node2D, hitbox: Area2D) -> void:
 	print("[Player] Inimigo fisgado: ", enemy.name)
 
 	if _qte_node and _qte_node.has_method("start"):
 		_qte_node.start(enemy, hitbox, self)
 
-	# Tira o registro da hitbox ativa
 	_active_hitbox = null
-
 
 func _on_qte_succeeded(enemy: Node2D) -> void:
 	print("[Player] QTE bem-sucedido! Inimigo sendo puxado.")
 	if enemy.has_method("take_damage"):
 		enemy.take_damage(3)
 
-
-## Se o qte falhar
 func _on_qte_failed(enemy: Node2D) -> void:
 	print("[Player] QTE falhou. Apenas dano base aplicado.")
 	if enemy.has_method("take_damage"):

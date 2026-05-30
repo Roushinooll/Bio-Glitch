@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var players = $Players
 @onready var fade_black: ColorRect = $UI/FadeBlack
+@onready var music_player: AudioStreamPlayer = $MusicPlayer 
 
 
 func _ready() -> void:
@@ -9,6 +10,11 @@ func _ready() -> void:
 	
 	await get_tree().create_timer(0.2).timeout
 	await fade_from_black(1.0)
+	
+	music_player.volume_db = -40.0
+	music_player.play()
+	var tween = create_tween()
+	tween.tween_property(music_player, "volume_db", -20.0, 1.5)
 	
 	Dialogic.start("serva_alerta_posGlitch")
 	await Dialogic.timeline_ended
@@ -58,3 +64,7 @@ func unblock_recursive(node: Node) -> void:
 	
 	for child in node.get_children():
 		unblock_recursive(child)
+		
+		
+func _exit_tree() -> void:  # ← cola aqui
+	music_player.stop()

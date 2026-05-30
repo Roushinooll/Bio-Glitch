@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://byjgahjdmayue" path="res://sprites/sprites_inimigos/Pirara.png" id="1_g5r6c"]
 [ext_resource type="Script" uid="uid://porjjycnfnm" path="res://cenas/inimigos/pirara.gd" id="1_n5pv5"]
+[ext_resource type="AudioStream" uid="uid://hqsufp50ih0s" path="res://audio/ExplosionSound.mp3" id="3_52g8r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5pv5"]
 size = Vector2(59, 26)
@@ -12,9 +13,9 @@ radius = 300.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52g8r"]
 
 [node name="Pirara" type="CharacterBody2D" unique_id=1268779069 groups=["enemy"]]
-collision_layer = 4
+collision_layer = 2
 script = ExtResource("1_n5pv5")
-distancia_de_recuo = 200.0
+velocidade_de_recuo = 250.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=711576528]
 texture = ExtResource("1_g5r6c")
@@ -40,3 +41,6 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BiteHitBox" unique_id=383450281]
 position = Vector2(-16, 0)
 shape = SubResource("RectangleShape2D_52g8r")
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="." unique_id=1585152689]
+stream = ExtResource("3_52g8r")

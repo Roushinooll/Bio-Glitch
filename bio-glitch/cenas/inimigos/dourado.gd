@@ -23,6 +23,7 @@ var current_health: int
 @onready var hitbox_collision: CollisionShape2D = $HitboxArea/CollisionShape2D
 @onready var explosion_sprite: AnimatedSprite2D = $ExplosionSprite
 @onready var visible_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var explosion_sound: AudioStreamPlayer = $ExplosionSound
 
 var active := true
 var already_hit := false
@@ -32,7 +33,6 @@ var target_offset := Vector2.ZERO
 var wave_offset := 0.0
 var wave_speed := 0.0
 var wave_strength := 0.0
-
 
 func _ready() -> void:
 	current_health = max_health
@@ -46,7 +46,6 @@ func _ready() -> void:
 	hitbox_area.body_entered.connect(_on_hitbox_body_entered)
 	visible_notifier.screen_exited.connect(_on_screen_exited)
 
-
 func _physics_process(delta: float) -> void:
 	if not active:
 		velocity = Vector2.ZERO
@@ -58,13 +57,11 @@ func _physics_process(delta: float) -> void:
 	if chase_player and target != null and is_instance_valid(target):
 		move_direction = get_suicide_direction()
 	
-	# Atualiza a direção interna para o flip do sprite acompanhar o movimento real
 	direction = move_direction
 
 	velocity = move_direction * speed
 	move_and_slide()
 	update_sprite_direction()
-
 
 func setup(
 	new_direction: Vector2,
@@ -91,7 +88,6 @@ func setup(
 	find_target()
 	update_sprite_direction()
 
-
 func find_target() -> void:
 	var possible_targets = get_tree().get_nodes_in_group(target_group)
 	
@@ -112,30 +108,25 @@ func find_target() -> void:
 	
 	target = closest_target
 
-
 func get_suicide_direction() -> Vector2:
 	if target == null or not is_instance_valid(target):
 		return direction
+	
+	target_offset = target_offset.lerp(Vector2.ZERO, 0.05)
 	
 	var time_wave := sin(Time.get_ticks_msec() / 1000.0 * wave_speed + wave_offset) * wave_strength
 	
 	var target_position := target.global_position + target_offset
 	target_position.y += time_wave
 
-	# --- CORREÇÃO ---
-	# Antes: o X ficava travado na direção de spawn, então ao passar pelo alvo
-	# o peixe continuava reto para sempre.
-	# Agora: aponta diretamente para o alvo em X e Y, perseguindo em todas as direções.
 	var to_target := target_position - global_position
 	return to_target.normalized()
-
 
 func update_sprite_direction() -> void:
 	if direction.x < 0:
 		sprite.flip_h = not sprite_faces_left
 	elif direction.x > 0:
 		sprite.flip_h = sprite_faces_left
-
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if already_hit:
@@ -144,7 +135,6 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		return
 	
-	# Só causa dano se for do grupo alvo correto (axolote), não o player principal
 	if body.is_in_group(target_group):
 		already_hit = true
 		
@@ -154,9 +144,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		if die_when_hit_player:
 			die()
 	elif body.is_in_group("player_principal") and not body.is_in_group(target_group):
-		# Colide fisicamente mas não causa dano nem morre — apenas passa pelo player principal
 		pass
-
 
 func die() -> void:
 	active = false
@@ -165,6 +153,8 @@ func die() -> void:
 	hitbox_collision.set_deferred("disabled", true)
 	
 	sprite.visible = false
+	explosion_sound.volume_db = -15.0
+	explosion_sound.play()
 	
 	if explosion_sprite.sprite_frames != null and explosion_sprite.sprite_frames.has_animation("explode"):
 		explosion_sprite.visible = true
@@ -172,7 +162,6 @@ func die() -> void:
 		await explosion_sprite.animation_finished
 	
 	queue_free()
-
 
 func _on_screen_exited() -> void:
 	if destroy_when_out_of_screen:

@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cc2uq7idnpemu"]
 
 [ext_resource type="Script" uid="uid://crosj73m3gpp5" path="res://cenas/inimigos/pirarucu.gd" id="1_go08c"]
-[ext_resource type="Texture2D" uid="uid://cnr1atvhaty6e" path="res://sprites/sprites_inimigos/Pirarucu.png" id="1_tjfhq"]
+[ext_resource type="Texture2D" uid="uid://cnr1atvhaty6e" path="res://sprites/sprites_inimigos/pirarucu.png" id="1_tjfhq"]
+[ext_resource type="AudioStream" uid="uid://hqsufp50ih0s" path="res://audio/ExplosionSound.mp3" id="3_wwhjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go08c"]
 size = Vector2(118, 34)
@@ -30,5 +31,8 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=386431448]
 position = Vector2(-279, -1)
 shape = SubResource("RectangleShape2D_wwhjc")
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="." unique_id=257837100]
+stream = ExtResource("3_wwhjc")
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
