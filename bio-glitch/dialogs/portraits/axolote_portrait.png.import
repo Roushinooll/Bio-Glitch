@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drfrrn0tupx0r"
-path="res://.godot/imported/Portrait_SERVA.png-7f5709db6b39177924294a6ae2f2b90f.ctex"
+uid="uid://b6km1566dma6n"
+path="res://.godot/imported/axolote_portrait.png-703536f6abb007daeb821851a251e7ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dialogs/portraits/Portrait_SERVA.png"
-dest_files=["res://.godot/imported/Portrait_SERVA.png-7f5709db6b39177924294a6ae2f2b90f.ctex"]
+source_file="res://dialogs/portraits/axolote_portrait.png"
+dest_files=["res://.godot/imported/axolote_portrait.png-703536f6abb007daeb821851a251e7ce.ctex"]
 
 [params]
 

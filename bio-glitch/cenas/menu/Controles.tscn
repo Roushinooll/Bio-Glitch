@@ -66,10 +66,10 @@ metadata/_edit_lock_ = true
 [node name="Button_Voltar" type="Button" parent="." unique_id=1335446120]
 custom_minimum_size = Vector2(310, 62)
 layout_mode = 0
-offset_left = 21.0
-offset_top = 14.0
-offset_right = 331.0
-offset_bottom = 76.0
+offset_left = 416.0
+offset_top = 543.0
+offset_right = 726.0
+offset_bottom = 605.0
 theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
 theme_override_colors/font_hover_color = Color(0.6156863, 0.9843137, 1, 1)
 theme_override_constants/outline_size = 3
@@ -79,26 +79,5 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_un6ry")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l4t1m")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6qa7h")
 text = "Voltar"
-
-[node name="Label_Titulo" type="Label" parent="." unique_id=287040870]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -833.0
-offset_top = 111.0
-offset_right = 319.0
-offset_bottom = 211.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.60784316, 0.05882353, 0.08627451, 1)
-theme_override_colors/font_shadow_color = Color(0.011764706, 0.0627451, 0.078431375, 1)
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("3_ul7vc")
-theme_override_font_sizes/font_size = 20
-text = "WASD - andar (Player 1)
-
-← ↑ ↓ → - andar (Player 2)"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="pressed" from="Button_Voltar" to="." method="_on_button_voltar_pressed"]
