@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cg7ailuwl44s7" path="res://cenas/menu/controles.gd" id="1_suf8e"]
 [ext_resource type="Texture2D" uid="uid://dva2aumw1f45l" path="res://sprites/sprites_fundos/bioParque_menu.jpeg" id="2_kqac0"]
 [ext_resource type="FontFile" uid="uid://ce5md5yw2ptfh" path="res://fonts/PressStart2P-Regular.ttf" id="3_ul7vc"]
+[ext_resource type="Texture2D" uid="uid://bkteabcy1hg7x" path="res://sprites/sprites_fundos/controles_players.png" id="4_kqac0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_un6ry"]
 bg_color = Color(0.06666667, 0.09411765, 0.10980392, 0.8)
@@ -51,7 +52,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_kqac0")
 stretch_mode = 6
-metadata/_edit_lock_ = true
 
 [node name="ColorRect_Escurecimento" type="ColorRect" parent="." unique_id=1296966571]
 layout_mode = 1
@@ -61,7 +61,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.2509804)
-metadata/_edit_lock_ = true
 
 [node name="Button_Voltar" type="Button" parent="." unique_id=1335446120]
 custom_minimum_size = Vector2(310, 62)
@@ -79,5 +78,69 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_un6ry")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l4t1m")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6qa7h")
 text = "Voltar"
+
+[node name="TextureRect_Controles" type="TextureRect" parent="." unique_id=311058457]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 20.0
+offset_right = 684.0
+offset_bottom = 534.0
+texture = ExtResource("4_kqac0")
+
+[node name="Label_Controles" type="Label" parent="." unique_id=1201590573]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.035
+anchor_bottom = 0.035
+offset_left = 434.0
+offset_top = 92.0
+offset_right = 840.6
+offset_bottom = 492.60004
+theme_override_colors/font_color = Color(0.418586, 0.9224703, 0.37793243, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_ul7vc")
+theme_override_font_sizes/font_size = 24
+text = "ANDAR (PLAYER 1)
+
+
+
+FISGAR (PLAYER 1)
+
+
+
+
+
+ANDAR (PLAYER 2)
+
+
+
+BOLHAS (PLAYER 2)"
+
+[node name="ColorRect_Escurecimento2" type="ColorRect" parent="." unique_id=1811792412]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 413.0
+offset_top = 54.0
+offset_right = -304.0
+offset_bottom = -398.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.2509804)
+
+[node name="ColorRect_Escurecimento3" type="ColorRect" parent="." unique_id=1005083026]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 411.0
+offset_top = 329.0
+offset_right = -306.0
+offset_bottom = -123.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.2509804)
 
 [connection signal="pressed" from="Button_Voltar" to="." method="_on_button_voltar_pressed"]
